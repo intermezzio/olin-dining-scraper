@@ -1,12 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import string
 from icecream import ic
 
 URL = "https://rebeccasculinarygroup.com/olin/menu-items/"
 
 all_days = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 weekdays = all_days[:5]
+weekends = all_days[5:]
 
 class DiningInfoManager:
 	def __init__(self):
@@ -17,16 +19,57 @@ class DiningInfoManager:
 		self.soup = BeautifulSoup(self.webpage.content, "lxml")
 		self.all_details = self.soup.find_all(class_="tabDetails")
 
-	def get_info(self, day, meal):
-		pass
+	def parse_menu(self):
+		self._get_breakfasts()
+		self._get_lunch_specials()
+		self._get_entrees()
+		self._get_grill()
+		self._get_pizza()
 
-	def get_breakfasts(self):
+		self.menu = {
+			day : {meal: {} for meal in ('Breakfast', 'Lunch', 'Dinner')} for day in weekdays
+		} | {
+			day : {meal: {} for meal in ('Dinner',)} for day in weekends
+		}
+
+		for day in weekdays:
+			self.menu[day]["Breakfast"] = self.breakfast_dict[day]
+
+			self.menu[day]["Lunch"] = {
+				"Sandwiches": self.lunch_specials_dict[day],
+				"Entree": self.lunch_entree_dict[day],
+				"Grill": self.lunch_grill_dict[day],
+				"Pizza": self.pizza_dict[day]
+			}
+
+			self.menu[day]["Dinner"] = {
+				"Entree": self.dinner_entree_dict[day],
+				"Grill": self.dinner_grill_dict[day],
+				"Pizza": self.pizza_dict[day]
+			}
+
+		for day in weekends:
+			self.menu[day]["Dinner"] = {
+				"Entree": self.dinner_entree_dict[day],
+				"Grill": self.dinner_grill_dict[day]
+			}
+
+		with open("menu.txt", "w") as outfile:
+			json.dump(self.menu, outfile, indent=4)
+
+	@staticmethod
+	def _clean_str(input_str):
+		printable = set(string.printable)
+		output_str = ''.join(filter(lambda x: x in printable, input_str)).strip()
+		return output_str
+
+	def _get_breakfasts(self):
 		breakfast_info = self.all_details[0]
 		self.breakfast_dict = self._get_section(breakfast_info,
 			weekdays, "Breakfast")
 		return self.breakfast_dict
 
-	def get_lunch_specials(self):
+	def _get_lunch_specials(self):
 		lunch_specials_info = self.all_details[2]
 		at_specials_section = False
 		current_days_in_header = set()
@@ -49,11 +92,11 @@ class DiningInfoManager:
 				continue
 			
 			for day in current_days_in_header:
-				self.lunch_specials_dict[day] += str(node.text) + "\n"
+				self.lunch_specials_dict[day] += self._clean_str(node.text) + "\n"
 
 		return self.lunch_specials_dict
 
-	def get_entrees(self):
+	def _get_entrees(self):
 		entrees_info = self.all_details[3]
 		self.lunch_entree_dict = self._get_section(entrees_info,
 			weekdays, "Lunch", "Saturday")
@@ -61,7 +104,7 @@ class DiningInfoManager:
 			all_days, "Dinner")
 		return (self.lunch_entree_dict, self.dinner_entree_dict)
 
-	def get_grill(self):
+	def _get_grill(self):
 		grill_info = self.all_details[4]
 		self.lunch_grill_dict = self._get_section(grill_info,
 			weekdays, "Lunch", "Dinner")
@@ -69,7 +112,7 @@ class DiningInfoManager:
 			all_days, "Dinner")
 		return (self.lunch_grill_dict, self.dinner_grill_dict)
 
-	def get_pizza(self):
+	def _get_pizza(self):
 		pizza_info = self.all_details[5]
 		self.pizza_dict = self._get_section(pizza_info,
 			weekdays, "Available")
@@ -94,7 +137,7 @@ class DiningInfoManager:
 				dotw_index += 1
 				day = dotw[dotw_index] if dotw_index < len(dotw) else "Monday"
 			elif dotw_index >= 1:
-				self.section_dict[dotw[dotw_index-1]] += str(node.text) + "\n"
+				self.section_dict[dotw[dotw_index-1]] += self._clean_str(node.text) + "\n"
 			node = node.find_next()
 		return self.section_dict
 
@@ -107,7 +150,8 @@ if __name__ == "__main__":
 	# with open("lunch_specials.txt", "w") as outfile:
 	# 	json.dump(lunch_specials, outfile, indent=4)
 
-	entrees = d.get_entrees()
-	print(entrees)
-	with open("entrees.txt", "w") as outfile:
-		json.dump(entrees, outfile, indent=4)
+	# entrees = d.get_entrees()
+	# print(entrees)
+	# with open("entrees.txt", "w") as outfile:
+	# 	json.dump(entrees, outfile, indent=4)
+	d.parse_menu()
