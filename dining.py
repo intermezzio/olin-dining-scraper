@@ -13,6 +13,7 @@ weekends = all_days[5:]
 class DiningInfoManager:
 	def __init__(self):
 		self._get_details()
+		self.parse_menu()
 
 	def _get_details(self):
 		self.webpage = requests.get(URL)
@@ -86,13 +87,15 @@ class DiningInfoManager:
 				if day in node.text:
 					potential_days_in_header.add(day)
 
-			print(potential_days_in_header)
 			if potential_days_in_header:
 				current_days_in_header = potential_days_in_header
 				continue
 			
 			for day in current_days_in_header:
-				self.lunch_specials_dict[day] += self._clean_str(node.text) + "\n"
+				self.lunch_specials_dict[day] += self._clean_str(node.text)
+
+		for day in current_days_in_header:
+			self.lunch_specials_dict[day] = self.lunch_specials_dict[day].strip()
 
 		return self.lunch_specials_dict
 
@@ -139,6 +142,10 @@ class DiningInfoManager:
 			elif dotw_index >= 1:
 				self.section_dict[dotw[dotw_index-1]] += self._clean_str(node.text) + "\n"
 			node = node.find_next()
+
+		for day in dotw:
+			self.section_dict[day] = self.section_dict[day].strip()
+
 		return self.section_dict
 
 
