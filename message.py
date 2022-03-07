@@ -2,6 +2,9 @@ from dining import DiningInfoManager, all_days, weekdays, weekends
 import random
 import json
 
+class UrBadException(Exception):
+	pass
+
 class MessageGenerator:
 	def __init__(self, json_file=None):
 		if json_file:
@@ -44,11 +47,64 @@ class MessageGenerator:
 				message_str, items = self._generate_breakfast(day)
 			elif meal == "Lunch":
 				message_str, items = self._generate_lunch(day)
+			elif meal == "Dinner":
+				message_str, items = self._generate_weekday_dinner(day)
+			else:
+				raise UrBadException("Bad meal name, mere mortal!")
+		elif day in weekends:
+			if meal == "Brunch":
+				message_str = "Tough luch this is brunch."
+			elif meal == "Dinner":
+				message_str, items = self._generate_weekend_dinner(day)
+			else:
+				raise UrBadException("Bad meal name, mere mortal!")
+		else:
+			raise UrBadException("Bad day of the week, mere mortal!")
 
 		if quote:
-			message_str = self.meme_quote(items)
+			message_str += "\n" + self.meme_quote(items)
 
 		return message_str
+
+	def _generate_weekday_dinner(self, day):
+		dinner_details = self.menu[day]["Dinner"]
+		dinner_entree = dinner_details["Entree"]
+		main_dinner_items = list(filter(
+			lambda x: x and x not in ("Bistro Plates:", "Simply Cooked", "Burger Bar:", "Daily Special"),
+			dinner_details["Grill"].split("\n")
+		))
+		pizza_items = list(filter(
+			lambda x: x and "lunch only" not in x and x not in ("Pasta Bar:", "Specialty Sub"),
+			dinner_details["Pizza"].split("\n")
+		))
+		
+		message_str = "Today's main dinner entree is " + dinner_entree + "\n"
+
+		message_str += "Main items:\n"
+		for item in main_dinner_items:
+			message_str += "+ " + item + "\n"
+
+		message_str += "Pizzas and Pastas:\n"
+		for item in pizza_items:
+			message_str += "+ " + item + "\n"
+
+		return (message_str, [dinner_entree] + main_dinner_items + pizza_items)
+
+	def _generate_weekend_dinner(self, day):
+		dinner_details = self.menu[day]["Dinner"]
+		dinner_entree = dinner_details["Entree"]
+		main_dinner_items = list(filter(
+			lambda x: x and x not in ("Bistro Plates:", "Simply Cooked", "Burger Bar:", "Daily Special"),
+			dinner_details["Grill"].split("\n")
+		))
+		
+		message_str = "Today's main dinner entree is " + dinner_entree + "\n"
+
+		message_str += "Main items:\n"
+		for item in main_dinner_items:
+			message_str += "+ " + item + "\n"
+
+		return (message_str, [dinner_entree] + main_dinner_items)
 
 	def _generate_lunch(self, day):
 		lunch_details = self.menu[day]["Lunch"]
@@ -102,7 +158,7 @@ class MessageGenerator:
 			message_str += "+ " + item + "\n"
 
 		message_str += "Sandwich: " + sandwich + "\n"
-		message_str += "Egg:      " + egg
+		message_str += "Egg:      " + egg + "\n"
 		return (message_str, main_breakfast_items + [sandwich] + [egg])
 
 	def meme_quote(self, items):
