@@ -15,10 +15,6 @@ class MessageGenerator:
 			self.menu = self.dining_info_manager.menu
 		self._load_assets()
 
-	@staticmethod
-	def from_json(cls, json_file):
-		pass
-
 	def _load_assets(self):
 		with open("assets/adjectives.txt") as infile:
 			self.adjectives = infile.read().strip().split("\n")
@@ -38,7 +34,7 @@ class MessageGenerator:
 		self.numbers = [str(i) for i in range(2,21)]
 		
 		
-	def generate_message(self, day, meal, quote=True):
+	def generate_message(self, day, meal, quotes=1):
 		message_str = ""
 		items = [""]
 
@@ -53,7 +49,8 @@ class MessageGenerator:
 				raise UrBadException("Bad meal name, mere mortal!")
 		elif day in weekends:
 			if meal == "Brunch":
-				message_str = "Tough luch this is brunch."
+				message_str = "Tough luck this is brunch. \n"
+				return message_str
 			elif meal == "Dinner":
 				message_str, items = self._generate_weekend_dinner(day)
 			else:
@@ -61,8 +58,8 @@ class MessageGenerator:
 		else:
 			raise UrBadException("Bad day of the week, mere mortal!")
 
-		if quote:
-			message_str += "\n" + self.meme_quote(items)
+		if quotes:
+			message_str += "\n" + self.meme_quotes(items, num=quotes)
 
 		return message_str
 
@@ -161,16 +158,52 @@ class MessageGenerator:
 		message_str += "Egg:      " + egg + "\n"
 		return (message_str, main_breakfast_items + [sandwich] + [egg])
 
-	def meme_quote(self, items):
-		comment = random.choice(self.comments)
-		comment = comment.replace(r"{item}", random.choice(items))
-		comment = comment.replace(r"{adj}", random.choice(self.adjectives))
-		comment = comment.replace(r"{eat}", random.choice(self.eat))
-		comment = comment.replace(r"{class}", random.choice(self.classes))
-		comment = comment.replace(r"{num}", random.choice(self.numbers))
+	def meme_quotes(self, items, num=1):
+		all_comments = []
 
-		comment = "\"" + comment + "\"\n\t- " + random.choice(self.names)
-		return comment
+		if num < len(self.comments):
+			comments = random.sample(self.comments, num)
+		else:
+			comments = random.choices(self.comments, k=num)
+
+		if num < len(items):
+			selected_items = random.sample(items, num)
+		else:
+			selected_items = random.choices(items, k=num)
+
+		if num < len(self.adjectives):
+			adjs = random.sample(self.adjectives, num)
+		else:
+			adjs = random.choices(self.adjectives, k=num)
+
+		if num < len(self.eat):
+			eats = random.sample(self.eat, num)
+		else:
+			eats = random.choices(self.eat, k=num)
+
+		if num < len(self.classes):
+			classes = random.sample(self.classes, num)
+		else:
+			classes = random.choices(self.classes, k=num)
+
+		if num < len(self.names):
+			names = random.sample(self.names, num)
+		else:
+			names = random.choices(self.names, k=num)
+
+		nums = random.choices(self.numbers, k=num)
+
+		for comment, item, adj, eat, class_, num, name in zip(
+				comments, selected_items, adjs, eats, classes, nums, names):
+			comment = comment.replace(r"{item}", item)
+			comment = comment.replace(r"{adj}", adj)
+			comment = comment.replace(r"{eat}", eat)
+			comment = comment.replace(r"{class}", class_)
+			comment = comment.replace(r"{num}", num)
+			comment = f"\"{comment}\"\n\t- {name}\n"
+			all_comments.append(comment)
+
+		return "\n".join(all_comments)
 
 	def generate_meme_message(self, day, meal):
 		pass
