@@ -1,5 +1,6 @@
 import schedule
 import time
+import datetime
 from message import MessageGenerator
 from send import send_mail
 
@@ -36,4 +37,5 @@ schedule.every().sunday.at("16:44").do(lambda: get_meal("Sunday", "Dinner"))
 
 while True:
     schedule.run_pending()
+    print(f"Dormant {datetime.datetime.now()}")
     time.sleep(30)
