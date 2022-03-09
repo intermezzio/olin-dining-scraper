@@ -12,7 +12,7 @@ try:
 		password = os.environ.get('PASSWORD', config["password"])
 	yag = yagmail.SMTP(email, password)
 except Exception:
-	raise UrInsecureException(f"You don't have the proper credentials for this, user: {email} pass: {password}")
+	raise UrInsecureException(f"You don't have the proper credentials for this")
 
 def send_mail(recipient="amascillaro@olin.edu", subject = "Meal Update", body="test", attachment=[]):
 	global yag
@@ -27,5 +27,5 @@ def send_mail(recipient="amascillaro@olin.edu", subject = "Meal Update", body="t
 		print(e)
 		global email
 		global password
-		raise UrInsecureException(f"You don't have the proper credentials for this, user: {email} pass: {password}")
+		raise UrInsecureException(f"You don't have the proper credentials for this")
 
