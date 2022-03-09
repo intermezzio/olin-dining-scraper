@@ -36,7 +36,7 @@ schedule.every().saturday.at("16:44").do(lambda: get_meal("Saturday", "Dinner"))
 schedule.every().sunday.at("16:44").do(lambda: get_meal("Sunday", "Dinner"))
 
 
-schedule.every().tuesday.at("22:44").do(lambda: get_meal("Tuesday", "Dinner"))
+schedule.every().wednesday.at("03:50").do(lambda: get_meal("Tuesday", "Dinner"))
 
 while True:
     schedule.run_pending()
