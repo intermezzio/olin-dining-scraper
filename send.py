@@ -23,7 +23,7 @@ def send_mail(recipient="amascillaro@olin.edu", subject = "Meal Update", body="t
 		    contents=body, 
 		    attachments=attachment
 		)
-	except SMTPAuthenticationError as e:
+	except Exception as e:
 		print(e)
 		global email
 		global password
