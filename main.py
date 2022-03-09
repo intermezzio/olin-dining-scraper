@@ -35,9 +35,6 @@ schedule.every().friday.at("20:44").do(lambda: get_meal("Friday", "Dinner"))
 schedule.every().saturday.at("20:44").do(lambda: get_meal("Saturday", "Dinner"))
 schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
 
-
-schedule.every().minute.do(lambda: get_meal("Tuesday", "Dinner"))
-
 while True:
     schedule.run_pending()
     print(f"Dormant {datetime.datetime.now()}")
