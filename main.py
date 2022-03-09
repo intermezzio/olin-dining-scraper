@@ -41,4 +41,4 @@ schedule.every().minute.do(lambda: get_meal("Tuesday", "Dinner"))
 while True:
     schedule.run_pending()
     print(f"Dormant {datetime.datetime.now()}")
-    time.sleep(30)
+    time.sleep(20)
