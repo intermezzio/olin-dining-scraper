@@ -28,27 +28,59 @@ def get_meal(day, meal):
 			body=e
 		)
 
-schedule.every().monday.at("11:07").do(lambda: get_meal("Monday", "Breakfast"))
-schedule.every().tuesday.at("11:07").do(lambda: get_meal("Tuesday", "Breakfast"))
-schedule.every().wednesday.at("11:07").do(lambda: get_meal("Wednesday", "Breakfast"))
-schedule.every().thursday.at("11:07").do(lambda: get_meal("Thursday", "Breakfast"))
-schedule.every().friday.at("11:07").do(lambda: get_meal("Friday", "Breakfast"))
+def get_day(day):
+	try:
+		print(f"Getting {day}")
+		m = MessageGenerator()
+		msg = m.generate_day_message(day, quotes=3)
+		
+		email_addr_str = os.environ.get("EMAIL_ADDRS", '')
+		email_addrs = list(filter(lambda x: x, email_addr_str.split(",")))
+		
+		print(f"{len(email_addrs)} email addresses")
+		for addr in email_addrs:
+			send_mail(recipient=addr,
+				subject=f"{day} {meal} at the Dining Hall",
+				body=msg
+			)
+	except Exception as e:
+		print("Exception")
+		print(e)
+		send_mail(recipient="amascillaro@olin.edu",
+			subject=f"Olin Dining Scraper Error",
+			body=e
+		)
 
-schedule.every().monday.at("15:11").do(lambda: get_meal("Monday", "Lunch"))
-schedule.every().tuesday.at("15:11").do(lambda: get_meal("Tuesday", "Lunch"))
-schedule.every().wednesday.at("15:11").do(lambda: get_meal("Wednesday", "Lunch"))
-schedule.every().thursday.at("15:11").do(lambda: get_meal("Thursday", "Lunch"))
-schedule.every().friday.at("15:11").do(lambda: get_meal("Friday", "Lunch"))
+schedule.every().monday.at("11:07").do(lambda: get_day("Monday"))
+schedule.every().tuesday.at("11:07").do(lambda: get_day("Tuesday"))
+schedule.every().wednesday.at("11:07").do(lambda: get_day("Wednesday"))
+schedule.every().thursday.at("11:07").do(lambda: get_day("Thursday"))
+schedule.every().friday.at("11:07").do(lambda: get_day("Friday"))
 
-schedule.every().monday.at("20:44").do(lambda: get_meal("Monday", "Dinner"))
-schedule.every().tuesday.at("20:44").do(lambda: get_meal("Tuesday", "Dinner"))
-schedule.every().wednesday.at("20:44").do(lambda: get_meal("Wednesday", "Dinner"))
-schedule.every().thursday.at("20:44").do(lambda: get_meal("Thursday", "Dinner"))
-schedule.every().friday.at("20:44").do(lambda: get_meal("Friday", "Dinner"))
-schedule.every().saturday.at("20:44").do(lambda: get_meal("Saturday", "Dinner"))
-schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
+schedule.every().saturday.at("11:07").do(lambda: get_day("Saturday"))
+schedule.every().sunday.at("11:07").do(lambda: get_day("Sunday"))
 
-# while True:
-#     schedule.run_pending()
-#     print(f"Dormant {datetime.datetime.now()}")
-#     time.sleep(30)
+# schedule.every().monday.at("11:07").do(lambda: get_meal("Monday", "Breakfast"))
+# schedule.every().tuesday.at("11:07").do(lambda: get_meal("Tuesday", "Breakfast"))
+# schedule.every().wednesday.at("11:07").do(lambda: get_meal("Wednesday", "Breakfast"))
+# schedule.every().thursday.at("11:07").do(lambda: get_meal("Thursday", "Breakfast"))
+# schedule.every().friday.at("11:07").do(lambda: get_meal("Friday", "Breakfast"))
+
+# schedule.every().monday.at("15:11").do(lambda: get_meal("Monday", "Lunch"))
+# schedule.every().tuesday.at("15:11").do(lambda: get_meal("Tuesday", "Lunch"))
+# schedule.every().wednesday.at("15:11").do(lambda: get_meal("Wednesday", "Lunch"))
+# schedule.every().thursday.at("15:11").do(lambda: get_meal("Thursday", "Lunch"))
+# schedule.every().friday.at("15:11").do(lambda: get_meal("Friday", "Lunch"))
+
+# schedule.every().monday.at("20:44").do(lambda: get_meal("Monday", "Dinner"))
+# schedule.every().tuesday.at("20:44").do(lambda: get_meal("Tuesday", "Dinner"))
+# schedule.every().wednesday.at("20:44").do(lambda: get_meal("Wednesday", "Dinner"))
+# schedule.every().thursday.at("20:44").do(lambda: get_meal("Thursday", "Dinner"))
+# schedule.every().friday.at("20:44").do(lambda: get_meal("Friday", "Dinner"))
+# schedule.every().saturday.at("20:44").do(lambda: get_meal("Saturday", "Dinner"))
+# schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
+
+while True:
+    schedule.run_pending()
+    print(f"Dormant {datetime.datetime.now()}")
+    time.sleep(30)

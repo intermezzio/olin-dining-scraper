@@ -45,6 +45,8 @@ class MessageGenerator:
 			message_str = "No brunch info available.\n" + \
 				"Dinner:\n" + \
 				self.generate_message(day, "Dinner", quotes=quotes)
+
+		return message_str
 		
 	def generate_message(self, day, meal, quotes=1):
 		message_str = ""
