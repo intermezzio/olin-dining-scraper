@@ -33,6 +33,18 @@ class MessageGenerator:
 
 		self.numbers = [str(i) for i in range(2,21)]
 		
+	def generate_day_message(self, day, quotes=3):
+		if day in weekdays:
+			message_str = "Breakfast:\n" + \
+				self.generate_message(day, "Breakfast", quotes=quotes) + \
+				"Lunch:\n" + \
+				self.generate_message(day, "Lunch", quotes=quotes) + \
+				"Dinner:\n" + \
+				self.generate_message(day, "Dinner", quotes=quotes)
+		else:
+			message_str = "No brunch info available.\n" + \
+				"Dinner:\n" + \
+				self.generate_message(day, "Dinner", quotes=quotes)
 		
 	def generate_message(self, day, meal, quotes=1):
 		message_str = ""

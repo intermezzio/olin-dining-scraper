@@ -5,15 +5,15 @@ from message import MessageGenerator
 from send import send_mail
 import os
 
-m = MessageGenerator()
-
 def get_meal(day, meal):
 	try:
 		print(f"Getting {day} {meal}")
-		global m
+		m = MessageGenerator()
 		msg = m.generate_message(day, meal, quotes=3)
+		
 		email_addr_str = os.environ.get("EMAIL_ADDRS", '')
 		email_addrs = list(filter(lambda x: x, email_addr_str.split(",")))
+		
 		print(f"{len(email_addrs)} email addresses")
 		for addr in email_addrs:
 			send_mail(recipient=addr,
