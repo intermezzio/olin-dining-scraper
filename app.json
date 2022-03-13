@@ -2,5 +2,5 @@
   "name": "Olin Dining Scraper",
   "description": "A web scraper that sends emails about Olin Dining Hall food",
   "repository": "https://github.com/intermezzio/olin-dining-scraper",
-  "keywords": ["python", "beautifulsoup", "yagmail", "heroku"],
-  }
+  "keywords": ["python", "beautifulsoup", "yagmail", "heroku"]
+}
