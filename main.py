@@ -40,7 +40,7 @@ def get_day(day):
 		print(f"{len(email_addrs)} email addresses")
 		for addr in email_addrs:
 			send_mail(recipient=addr,
-				subject=f"{day} {meal} at the Dining Hall",
+				subject=f"{day} at the Dining Hall",
 				body=msg
 			)
 	except Exception as e:
@@ -80,7 +80,7 @@ schedule.every().sunday.at("11:07").do(lambda: get_day("Sunday"))
 # schedule.every().saturday.at("20:44").do(lambda: get_meal("Saturday", "Dinner"))
 # schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
 
-while True:
-    schedule.run_pending()
-    print(f"Dormant {datetime.datetime.now()}")
-    time.sleep(30)
+# while True:
+#     schedule.run_pending()
+#     print(f"Dormant {datetime.datetime.now()}")
+#     time.sleep(30)
