@@ -1,9 +1,11 @@
-import schedule
+import os
+import sys
+import traceback
 import time
 import datetime
+import schedule
 from message import MessageGenerator
-from send import send_mail
-import os
+from send import send_mail, email_recipients, debug_email, email_bot
 
 def get_meal(day, meal):
 	try:
@@ -11,19 +13,17 @@ def get_meal(day, meal):
 		m = MessageGenerator()
 		msg = m.generate_message(day, meal, quotes=3)
 		
-		email_addr_str = os.environ.get("EMAIL_ADDRS", '')
-		email_addrs = list(filter(lambda x: x, email_addr_str.split(",")))
-		
-		print(f"{len(email_addrs)} email addresses")
-		for addr in email_addrs:
-			send_mail(recipient=addr,
-				subject=f"{day} {meal} at the Dining Hall",
-				body=msg
-			)
+		print(f"{len(email_recipients)} email addresses")
+		print(email_recipients)
+
+		send_mail(recipient=email_bot, bcc=email_recipients,
+			subject=f"{day} {meal} at the Dining Hall",
+			body=msg
+		)
 	except Exception as e:
 		print("Exception")
 		print(e)
-		send_mail(recipient="amascillaro@olin.edu",
+		send_mail(recipient=debug_email,
 			subject=f"Olin Dining Scraper Error",
 			body=e
 		)
@@ -34,21 +34,19 @@ def get_day(day):
 		m = MessageGenerator()
 		msg = m.generate_day_message(day, quotes=3)
 		
-		email_addr_str = os.environ.get("EMAIL_ADDRS", '')
-		email_addrs = list(filter(lambda x: x, email_addr_str.split(",")))
+		print(f"{len(email_recipients)} email addresses")
+		print(email_recipients)
 		
-		print(f"{len(email_addrs)} email addresses")
-		for addr in email_addrs:
-			send_mail(recipient=addr,
-				subject=f"{day} at the Dining Hall",
-				body=msg
-			)
-	except Exception as e:
+		send_mail(recipient=email_bot, bcc=email_recipients,
+			subject=f"{day} at the Dining Hall",
+			body=msg
+		)
+	except Exception:
+		error_info = traceback.format_exc()
 		print("Exception")
-		print(e)
-		send_mail(recipient="amascillaro@olin.edu",
-			subject=f"Olin Dining Scraper Error",
-			body=e
+		send_mail(recipient=debug_email,
+			subject=f"[error] {day} at the Dining Hall",
+			body=error_info
 		)
 
 schedule.every().monday.at("11:07").do(lambda: get_day("Monday"))
@@ -80,7 +78,12 @@ schedule.every().sunday.at("11:07").do(lambda: get_day("Sunday"))
 # schedule.every().saturday.at("20:44").do(lambda: get_meal("Saturday", "Dinner"))
 # schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
 
-while True:
-	 schedule.run_pending()
-	 print(f"Dormant {datetime.datetime.now()}")
-	 time.sleep(30)
+if __name__ == "__main__":
+	if len(sys.argv) >= 2 and sys.argv[1] == "debug":
+		print("Debug now")
+	else:
+		print("Set up scheduling")
+		while True:
+			 schedule.run_pending()
+			 print(f"Dormant {datetime.datetime.now()}")
+			 time.sleep(30)

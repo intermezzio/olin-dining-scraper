@@ -165,3 +165,6 @@ moist
 whitelisted
 5G
 krazy good
+coveted
+dank
+lit

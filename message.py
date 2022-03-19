@@ -37,13 +37,13 @@ class MessageGenerator:
 		if day in weekdays:
 			message_str = "Breakfast:\n" + \
 				self.generate_message(day, "Breakfast", quotes=quotes) + \
-				"Lunch:\n" + \
+				"\nLunch:\n" + \
 				self.generate_message(day, "Lunch", quotes=quotes) + \
-				"Dinner:\n" + \
+				"\nDinner:\n" + \
 				self.generate_message(day, "Dinner", quotes=quotes)
 		else:
 			message_str = "No brunch info available.\n" + \
-				"Dinner:\n" + \
+				"\nDinner:\n" + \
 				self.generate_message(day, "Dinner", quotes=quotes)
 
 		return message_str
