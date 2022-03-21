@@ -37,6 +37,9 @@ def get_day(day):
 		m = MessageGenerator()
 		msg = m.generate_day_message(day, quotes=3)
 		
+		## JUST FOR 3/22
+		msg = "THE MENU IS NOT UPDATED FOR THIS WEEK, DISREGARD THE CONTENT ON 3/22, ENJOY THE QUOTES :)\n\n" + msg
+
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
 		
