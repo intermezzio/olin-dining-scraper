@@ -13,6 +13,9 @@ def get_meal(day, meal):
 		m = MessageGenerator()
 		msg = m.generate_message(day, meal, quotes=3)
 		
+		## JUST FOR 3/22
+		msg = "THE MENU IS NOT UPDATED FOR THIS WEEK, DISREGARD THE CONTENT ON 3/22, ENJOY THE QUOTES :)\n\n" + msg
+
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
 
