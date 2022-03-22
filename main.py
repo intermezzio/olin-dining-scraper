@@ -7,14 +7,16 @@ import schedule
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
+prefix = ""
+
 def get_meal(day, meal):
+	global prefix
 	try:
 		print(f"Getting {day} {meal}")
 		m = MessageGenerator()
 		msg = m.generate_message(day, meal, quotes=3)
 		
-		## JUST FOR 3/22
-		msg = "THE MENU IS NOT UPDATED FOR THIS WEEK, DISREGARD THE CONTENT ON 3/22, ENJOY THE QUOTES :)\n\n" + msg
+		msg = prefix + ("\n\n" if prefix else "") + msg
 
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
@@ -32,14 +34,14 @@ def get_meal(day, meal):
 		)
 
 def get_day(day):
+	global prefix
 	try:
 		print(f"Getting {day}")
 		m = MessageGenerator()
 		msg = m.generate_day_message(day, quotes=3)
 		
-		## JUST FOR 3/22
-		msg = "THE MENU IS NOT UPDATED FOR THIS WEEK, DISREGARD THE CONTENT ON 3/22, ENJOY THE QUOTES :)\n\n" + msg
-
+		msg = prefix + ("\n\n" if prefix else "") + msg
+		
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
 		
