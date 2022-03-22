@@ -8,6 +8,8 @@ To host your own version of this, click the deploy button below:
 
 ## Setup
 
+This code runs on Python 3.9 or greater (I could've made it more compatible with older versions but [PEP 584](https://peps.python.org/pep-0584/) is just too good to resist). All Python dependencies are in the `requirements.txt` file, and running `pip install -r requirements.txt` after cloning should be sufficient for running the code.
+
 For security purposes, the online version of this repository does not have passwords and recipients' email addresses stored in it. Currently, there are two ways to set up these credentials for deployment.
 
 ### Option 1: Environment Variables (preferred)
