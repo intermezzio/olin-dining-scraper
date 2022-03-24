@@ -21,10 +21,11 @@ def get_meal(day, meal):
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
 
-		send_mail(recipient=email_bot, bcc=email_recipients,
-			subject=f"{day} {meal} at the Dining Hall",
-			body=msg
-		)
+		for recipient in email_recipients:
+			send_mail(recipient=recipient,
+				subject=f"{day} {meal} at the Dining Hall",
+				body=msg
+			)
 	except Exception as e:
 		print("Exception")
 		print(e)
@@ -45,10 +46,11 @@ def get_day(day):
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
 		
-		send_mail(recipient=email_bot, bcc=email_recipients,
-			subject=f"{day} at the Dining Hall",
-			body=msg
-		)
+		for recipient in email_recipients:
+			send_mail(recipient=recipient,
+				subject=f"{day} at the Dining Hall",
+				body=msg
+			)
 	except Exception:
 		error_info = traceback.format_exc()
 		print("Exception")
