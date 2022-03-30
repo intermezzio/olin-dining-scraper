@@ -7,7 +7,7 @@ import schedule
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
-prefix = ""
+prefix = "\"If I had to give up <s>playing league</s> <b>stealing dining hall forks</b> to stuff my face with some CDC approved Spanish Fiesta, I would do it in a heartbeat.\"\n\t- All of you"
 
 def get_meal(day, meal):
 	global prefix
