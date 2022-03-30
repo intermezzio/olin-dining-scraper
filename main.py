@@ -24,7 +24,8 @@ def get_meal(day, meal):
 		for recipient in email_recipients:
 			send_mail(recipient=recipient,
 				subject=f"{day} {meal} at the Dining Hall",
-				body=msg
+				body=msg,
+				attachment="menu.json"
 			)
 	except Exception as e:
 		print("Exception")
@@ -49,7 +50,8 @@ def get_day(day):
 		for recipient in email_recipients:
 			send_mail(recipient=recipient,
 				subject=f"{day} at the Dining Hall",
-				body=msg
+				body=msg,
+				attachment="menu.json"
 			)
 	except Exception:
 		error_info = traceback.format_exc()

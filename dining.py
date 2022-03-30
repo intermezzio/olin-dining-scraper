@@ -55,7 +55,7 @@ class DiningInfoManager:
 				"Grill": self.dinner_grill_dict[day]
 			}
 
-		with open("menu.txt", "w") as outfile:
+		with open("menu.json", "w") as outfile:
 			json.dump(self.menu, outfile, indent=4)
 
 	@staticmethod
