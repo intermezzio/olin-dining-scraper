@@ -7,7 +7,7 @@ import schedule
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
-prefix = "See more quotes <a href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\">here</a>!"
+prefix = ""
 
 def get_meal(day, meal):
 	global prefix
