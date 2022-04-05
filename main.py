@@ -14,7 +14,7 @@ def get_meal(day, meal):
 	try:
 		print(f"Getting {day} {meal}")
 		m = MessageGenerator()
-		msg = m.generate_message(day, meal, quotes=3)
+		msg = m.generate_message(day, meal, quotes=2)
 		
 		msg = prefix + ("\n\n" if prefix else "") + msg
 
@@ -40,7 +40,7 @@ def get_day(day):
 	try:
 		print(f"Getting {day}")
 		m = MessageGenerator()
-		msg = m.generate_day_message(day, quotes=3)
+		msg = m.generate_day_message(day, quotes=2)
 		
 		msg = prefix + ("\n\n" if prefix else "") + msg
 		
