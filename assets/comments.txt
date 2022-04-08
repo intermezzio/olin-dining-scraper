@@ -111,5 +111,6 @@ Forget the riches. I bet Christopher Columbus <i>really</i> traveled to the Amer
 Did you hear Kanye's new album titled {item}? It was a real jam!
 Would you be a doll and pass me some more of that {adj} {item}?
 If I knew {item} was on the menu I would've actually come today. I guess I should've <i>signed up for this mailing list</i>.
-This {adj} {item} is why I decided to come to Olin in the first place!
 I used to not believe in love at first sight, but then I took a glance at this {adj} {item} and I realized that it's possible.
+I hope there's a 30 second video of someone trying to {eat} {num} stacks of {adj} {item}.
+Tech week? Enough of this 'fwop' coverup. I know what they're <i>really</i> doing every evening: eating {adj} {item}!
