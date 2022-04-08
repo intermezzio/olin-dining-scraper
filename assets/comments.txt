@@ -98,7 +98,7 @@ When I think of going out to eat, I think of eating {adj} {item}. After I gradua
 I'm waiting for the day someone makes fancy ramen that's mimics the taste of this {adj} {item} in the dining hall.
 When I was a prospie, and I saw {adj} {item} at the dining hall, I knew Olin was the college for me.
 Princeton Review just rated Olin as the college with the {num}th best {item}. This will attract all the future applicants.
-I would vote across party lines if the next presidential candidate (from the other party) promised to feed every citizen monthly {adj} {item} from the dining hall. That's what I call universal income!
+I would vote across party lines if the opposing presidential candidate promised to feed every citizen monthly {adj} {item} from the dining hall. That's what I call universal income <i>and</i> universal healthcare!
 I know I'm about to have a good meal when I step in the dining hall and smell the {adj} {item} in there.
 My subteam lead asked why I skipped formula today. Are you kidding? I <i>had to</i> {eat} the {adj} {item} in the dining hall!
 If soylent tasted like {adj} {item}, we'd all sell away our dignity and buy it.
@@ -107,4 +107,9 @@ I would retake {class} if it let me {eat} more of this {adj} {item}.
 Do you think the mail room manager knows that I've been getting weekly shipments of {adj} {item}? They better give me the packages on time!
 To quote Patrick Henry, 'Give me <s>liberty</s> {adj} {item}, or give me death!'
 As Gandhi once said, 'An eye for an eye makes the world blind, but a {item} for a {item} solves world hunger.'
-Forget the riches. I bet Christopher Columbus <i>really</i> traveled to the Americas to try the Olin dining hall's {adj} {item}.
+Forget the riches. I bet Christopher Columbus <i>really</i> traveled to the Americas to try the Olin dining hall's {adj} {item}. Too bad the dining hall was closed, that's why he went back to Europe.
+Did you hear Kanye's new album titled {item}? It was a real jam!
+Would you be a doll and pass me some more of that {adj} {item}?
+If I knew {item} was on the menu I would've actually come today. I guess I should've <i>signed up for this mailing list</i>.
+This {adj} {item} is why I decided to come to Olin in the first place!
+I used to not believe in love at first sight, but then I took a glance at this {adj} {item} and I realized that it's possible.
