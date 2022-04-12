@@ -4,6 +4,7 @@ import traceback
 import time
 import datetime
 import schedule
+import yagmail
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
@@ -51,7 +52,8 @@ def get_day(day):
 			send_mail(recipient=recipient,
 				subject=f"{day} at the Dining Hall",
 				body=msg,
-				attachment="menu.json"
+				attachment="menu.json",
+				contents=[yagmail.inline("featured_img.png")]
 			)
 	except Exception:
 		error_info = traceback.format_exc()

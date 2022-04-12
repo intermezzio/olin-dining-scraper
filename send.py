@@ -25,15 +25,16 @@ try:
 except Exception:
 	raise UrInsecureException(f"You don't have the proper credentials for this")
 
-def send_mail(recipient=debug_email, bcc=None, subject = "Meal Update", body="test", attachment=[]):
+def send_mail(recipient=debug_email, bcc=None, subject = "Meal Update", body="test", attachment=[],
+		contents=[]):
 	global yag
 	try:
 		yag.send(
 		    to=recipient,
 		    bcc=bcc,
 		    subject=subject,
-		    contents=body, 
-		    attachments=attachment
+		    contents=contents+[body], 
+		    attachments=attachment,
 		)
 	except Exception as e:
 		print(e)

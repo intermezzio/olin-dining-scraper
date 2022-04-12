@@ -110,7 +110,10 @@ As Gandhi once said, 'An eye for an eye makes the world blind, but a {item} for 
 Forget the riches. I bet Christopher Columbus <i>really</i> traveled to the Americas to try the Olin dining hall's {adj} {item}. Too bad the dining hall was closed, that's why he went back to Europe.
 Did you hear Kanye's new album titled {item}? It was a real jam!
 Would you be a doll and pass me some more of that {adj} {item}?
-If I knew {item} was on the menu I would've actually come today. I guess I should've <i>signed up for this mailing list</i>.
+If I knew {item} was on the menu I would've actually come today. I guess I should've <a href="https://lists.olin.edu/mailman/listinfo/dhinfo"><i>signed up for this mailing list</i></a>.
 I used to not believe in love at first sight, but then I took a glance at this {adj} {item} and I realized that it's possible.
 I hope there's a 30 second video of someone trying to {eat} {num} stacks of {adj} {item}.
 Tech week? Enough of this 'fwop' coverup. I know what they're <i>really</i> doing every evening: eating {adj} {item}!
+Can I tell you a secret? <i>finishes chewing {item}</i> The meal isn't over.
+OSSTP definitely put {adj} {item} in their cubesat. NASA saw it in their design and knew the cubesat should be selected for its launch initiative!
+The best 4N loft will be the one that serves {adj} {item} on Friday nights.
