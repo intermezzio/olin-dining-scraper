@@ -38,7 +38,7 @@ class MessageGenerator:
 		dinner_entree = self.menu[day]["Dinner"]["Entree"]
 		get_image(dinner_entree)
 
-		message_str = f"Accurate depiction of {dinner_entree} in the dining hall\n\n"
+		caption = f"Accurate depiction of {dinner_entree} in the dining hall\n\n"
 
 		if day in weekdays:
 			message_str = "Breakfast:\n" + \
@@ -52,7 +52,7 @@ class MessageGenerator:
 				"\nDinner:\n" + \
 				self.generate_message(day, "Dinner", quotes=quotes)
 
-		return message_str
+		return message_str, caption
 		
 	def generate_message(self, day, meal, quotes=1):
 		message_str = ""

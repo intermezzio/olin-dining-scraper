@@ -8,7 +8,9 @@ import yagmail
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
-prefix = ""
+prefix = """\"Can you send the emails earlier? I get out of bed at 7:02 and am not on my phone at 7:07 ...
+I'm waiting here in your room [for like 10 minutes] so that you change the time it's sent at!\"
+\t- Leopoldo Sanchez IV"""
 
 def get_meal(day, meal):
 	global prefix
@@ -41,9 +43,9 @@ def get_day(day):
 	try:
 		print(f"Getting {day}")
 		m = MessageGenerator()
-		msg = m.generate_day_message(day, quotes=2)
+		msg, caption = m.generate_day_message(day, quotes=2)
 		
-		msg = prefix + ("\n\n" if prefix else "") + msg
+		msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg
 		
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
@@ -63,14 +65,14 @@ def get_day(day):
 			body=error_info
 		)
 
-schedule.every().monday.at("11:07").do(lambda: get_day("Monday"))
-schedule.every().tuesday.at("11:07").do(lambda: get_day("Tuesday"))
-schedule.every().wednesday.at("11:07").do(lambda: get_day("Wednesday"))
-schedule.every().thursday.at("11:07").do(lambda: get_day("Thursday"))
-schedule.every().friday.at("11:07").do(lambda: get_day("Friday"))
+schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
+schedule.every().tuesday.at("10:42").do(lambda: get_day("Tuesday"))
+schedule.every().wednesday.at("10:42").do(lambda: get_day("Wednesday"))
+schedule.every().thursday.at("10:42").do(lambda: get_day("Thursday"))
+schedule.every().friday.at("10:42").do(lambda: get_day("Friday"))
 
-schedule.every().saturday.at("11:07").do(lambda: get_day("Saturday"))
-schedule.every().sunday.at("11:07").do(lambda: get_day("Sunday"))
+schedule.every().saturday.at("10:42").do(lambda: get_day("Saturday"))
+schedule.every().sunday.at("10:42").do(lambda: get_day("Sunday"))
 
 # schedule.every().monday.at("11:07").do(lambda: get_meal("Monday", "Breakfast"))
 # schedule.every().tuesday.at("11:07").do(lambda: get_meal("Tuesday", "Breakfast"))

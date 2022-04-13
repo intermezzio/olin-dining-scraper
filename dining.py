@@ -105,6 +105,10 @@ class DiningInfoManager:
 			weekdays, "Lunch", "Saturday")
 		self.dinner_entree_dict = self._get_section(entrees_info,
 			all_days, "Dinner")
+		for k, v in self.dinner_entree_dict.items():
+			if v == "":
+				self.dinner_entree_dict[k] = "<a href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\">Surprise Meal</a>"
+
 		return (self.lunch_entree_dict, self.dinner_entree_dict)
 
 	def _get_grill(self):
