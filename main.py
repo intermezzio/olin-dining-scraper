@@ -8,9 +8,7 @@ import yagmail
 from message import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
 
-prefix = """\"Can you send the emails earlier? I get out of bed at 7:02 and am not on my phone at 7:07 ...
-I'm waiting here in your room [for like 10 minutes] so that you change the time it's sent at!\"
-\t- Leopoldo Sanchez IV"""
+prefix = ""
 
 def get_meal(day, meal):
 	global prefix
@@ -65,6 +63,7 @@ def get_day(day):
 			body=error_info
 		)
 
+# EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
 schedule.every().tuesday.at("10:42").do(lambda: get_day("Tuesday"))
 schedule.every().wednesday.at("10:42").do(lambda: get_day("Wednesday"))
