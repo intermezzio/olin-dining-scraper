@@ -28,7 +28,7 @@ Don't tell the dining hall staff but I will sneak into their kitchen tonight jus
 If the Babson students hear about the {adj} {item} they're making here, they'll all be in line, patiently waiting for their chance to {eat} it.
 If I were you, I'd sneak in a little extra {item} onto my plate. I think it's really {adj} today.
 Some people think {item} tastes bad, but in my perfect opinion, {item} is so {adj} at the dining hall that I'd spend the rest of my life trying to {eat} it as many times as I could.
-There are three things that never end, four that never cease to amaze me: the digits of pi, qea overnights, Lucy's killing spree in assassin, and Sam Eldrige when he makes {adj} {item}.
+There are three things that never end, four that never cease to amaze me: the digits of pi, qea overnights, Lucy's killing spree in assassin, and Sam Eldridge when he makes {adj} {item}.
 Maybe I can't count to {num}, but I can always count on the {item} tasting {adj}.
 Personally, I think it's time we got every Oliner on a new diet: {num} servings of {adj}, dining hall {item} every day and nothing else. Imagine the health benefits!
 You don't know {adj} food until you've tried {adj} {item} at the dining hall.
@@ -46,7 +46,7 @@ I haven't stopped thinking about the {item} I ate today, it was so {adj}.
 You know that feeling when you look at something and you just want to {eat} it? That was me with my {adj} {item} today.
 Oh {item}, thou art the most {adj} {item} of them all!
 This {adj} {item} is so good, I would dodge all my valorant games for it.
-I can't control my happiness when I {eat} {adj} {item} with Sam Eldrige's extra {adj} soup of the day.
+I can't control my happiness when I {eat} {adj} {item} with Sam Eldridge's extra {adj} soup of the day.
 Oh man, Olin's {adj} {item} is so good, I like it almost as much as I like to {eat} dirt.
 The world might be falling to bits, but at least I can still {eat} the Olin dining hall's {item}. It's so {adj} that I forget all my problems!
 My happiness after I {eat} this {adj} {item} lasts longer than all the Olin dryers.
@@ -82,7 +82,7 @@ I was having a bad day until this {item} showed up on my plate, and now at a dee
 Julia Child died of pure envy when she saw the {adj} {item} in the dining hall.
 Why watch the Great British Baking Show when you can watch Himanshu make {adj} {item} in the dining hall?
 FWOP hasn't told us what the play's about because they want to surprise us with a plot centered around trying to {eat} the {adj} {item} in the dining hall.
-I'm planning to bribe Sam Elridge with ${num},000 to make more {adj} {item} just for me.
+I'm planning to bribe Sam Eldridge with ${num},000 to make more {adj} {item} just for me.
 I'm going to change my Amazon Echo's wakeup word to {adj} {item}. Sure, it's a slightly longer phrase, but it's definitely a more fitting name.
 I'd manually take {num} CO2e out of the atmosphere with my bare hands just so that I can offset the emissions of this {adj} {item} from the dining hall.
 Olin better finally approve my new AHS concentration: eating {adj} {item}.
@@ -117,3 +117,18 @@ Tech week? Enough of this 'fwop' coverup. I know what they're <i>really</i> doin
 Can I tell you a secret? <i>finishes chewing {item}</i> The meal isn't over.
 OSSTP definitely put {adj} {item} in their cubesat. NASA saw it in their design and knew the cubesat should be selected for its launch initiative!
 The best 4N loft will be the one that serves {adj} {item} on Friday nights.
+The only thing worse than losing the secret spot is missing out on {adj} {item} in the dining hall.
+I'd work at the dining hall without pay if it gave me unlimited access to the oh, so {adj} {item} for three hours straight!
+Some people would pay $25 to eat RiceBurg while living at Olin, but I tell you, I'd pay {num}*$25 to eat {adj} {item} in the dining hall!
+You know that P&M team that's baking food at midnight? Imagine if they served {adj} {item} instead. <i>Everyone</i> would pour into the WH kitchen just to {eat} some. That's a good pivot if I've heard of one!
+I'd gladly register for courses {num} hours late and {eat} {adj} {item} instead.
+Will I get an extension on my {class} project because I <i>had to spend</i> {num} hours eating {adj} {item} from the dining hall?
+When I graduate, maybe I'll miss {class}. I'll miss the Oliners a little more. But you know what I'll really miss? The {adj} {item} in the dining hall.
+If they required students to get covid tested every time they wanted to eat {adj} {item}, we'd <i>easily</i> get 1000% testing compliance.
+Hopper night, more like hop on my couch and {eat} {adj} {item} night!
+I am so inspired by this {adj} {item}, I'm going to write a song about it and pour all of my feelings into it.
+This {adj} {item} is my new favorite comfort food.
+You know why people really want singles as R2s? To {eat} as much {adj} {item} as they want without anyone finding out.
+I'm about to email the registrar to see if I can change my major to E:{item}.
+I've replaced the experience section on my resume with {item} and all the other {adj} dishes I eat at the dining hall, and now I'm getting like {num} internship offers a day!
+Sam Eldridge should patent the {adj} {item} he cooks here. It would be worth millions!

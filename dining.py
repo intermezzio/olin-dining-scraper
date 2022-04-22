@@ -107,7 +107,7 @@ class DiningInfoManager:
 			all_days, "Dinner")
 		for k, v in self.dinner_entree_dict.items():
 			if v == "":
-				self.dinner_entree_dict[k] = "<a href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\">Surprise Meal</a>"
+				self.dinner_entree_dict[k] = "<a href=\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\">NaM (Not a Meal)</a>"
 
 		return (self.lunch_entree_dict, self.dinner_entree_dict)
 
