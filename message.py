@@ -1,7 +1,7 @@
 import random
 import json
 from dining import DiningInfoManager, all_days, weekdays, weekends
-from scrape import get_image
+from scrape import get_image_any_format
 
 class UrBadException(Exception):
 	pass
@@ -36,9 +36,9 @@ class MessageGenerator:
 		
 	def generate_day_message(self, day, quotes=3):
 		dinner_entree = self.menu[day]["Dinner"]["Entree"]
-		get_image(dinner_entree)
+		get_image_any_format(dinner_entree)
 
-		caption = f"Accurate depiction of {dinner_entree} in the dining hall\n\n"
+		caption = f"Accurate depiction of {dinner_entree} in the dining hall"
 
 		if day in weekdays:
 			message_str = "Breakfast:\n" + \

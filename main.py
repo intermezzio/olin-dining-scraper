@@ -10,8 +10,7 @@ from send import send_mail, email_recipients, debug_email, email_bot
 
 prefix = ""
 
-postfix = """\"Some people would pay $25 to eat RiceBurg while living at Olin, but I tell you, I'd pay 7*$25 to eat oak cask aged New England Fish Friday in the dining hall instead!\"
-\t- Jaclyn\n"""
+postfix = ""
 
 # def get_meal(day, meal):
 # 	global prefix
