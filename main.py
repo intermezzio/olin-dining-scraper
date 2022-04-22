@@ -10,31 +10,34 @@ from send import send_mail, email_recipients, debug_email, email_bot
 
 prefix = ""
 
-def get_meal(day, meal):
-	global prefix
-	try:
-		print(f"Getting {day} {meal}")
-		m = MessageGenerator()
-		msg = m.generate_message(day, meal, quotes=2)
+postfix = """\"Some people would pay $25 to eat RiceBurg while living at Olin, but I tell you, I'd pay 7*$25 to eat oak cask aged New England Fish Friday in the dining hall instead!\"
+\t- Jaclyn\n"""
+
+# def get_meal(day, meal):
+# 	global prefix
+# 	try:
+# 		print(f"Getting {day} {meal}")
+# 		m = MessageGenerator()
+# 		msg = m.generate_message(day, meal, quotes=2)
 		
-		msg = prefix + ("\n\n" if prefix else "") + msg
+# 		msg = prefix + ("\n\n" if prefix else "") + msg + ("\n\n" if postfix else "") + postfix
 
-		print(f"{len(email_recipients)} email addresses")
-		print(email_recipients)
+# 		print(f"{len(email_recipients)} email addresses")
+# 		print(email_recipients)
 
-		for recipient in email_recipients:
-			send_mail(recipient=recipient,
-				subject=f"{day} {meal} at the Dining Hall",
-				body=msg,
-				attachment="menu.json"
-			)
-	except Exception as e:
-		print("Exception")
-		print(e)
-		send_mail(recipient=debug_email,
-			subject=f"Olin Dining Scraper Error",
-			body=e
-		)
+# 		for recipient in email_recipients:
+# 			send_mail(recipient=recipient,
+# 				subject=f"{day} {meal} at the Dining Hall",
+# 				body=msg,
+# 				attachment="menu.json"
+# 			)
+# 	except Exception as e:
+# 		print("Exception")
+# 		print(e)
+# 		send_mail(recipient=debug_email,
+# 			subject=f"Olin Dining Scraper Error",
+# 			body=e
+# 		)
 
 def get_day(day):
 	global prefix
@@ -43,7 +46,7 @@ def get_day(day):
 		m = MessageGenerator()
 		msg, caption = m.generate_day_message(day, quotes=2)
 		
-		msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg
+		msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
 		
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
