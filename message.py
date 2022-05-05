@@ -2,6 +2,7 @@ import random
 import json
 from dining import DiningInfoManager, all_days, weekdays, weekends
 from scrape import get_image_any_format
+import random_stuff as rs
 
 class UrBadException(Exception):
 	pass

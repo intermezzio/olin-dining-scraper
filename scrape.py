@@ -22,7 +22,6 @@ def get_image(search_term):
 
 def get_image_any_format(search_term):
 	global fixer
-	global fixer
 	search_term = fixer.sub('', search_term)
 	image_search = ddg_images(search_term, safesearch="On", max_results=100)
 
@@ -32,11 +31,11 @@ def get_image_any_format(search_term):
 		return
 
 	os.system("mkdir -p cache/")
+	os.system("rm -f cache/*")
 
-	for i in range(5):
-		image = image_search[i] # random.choice(image_search[:10])
+	for image in image_search: # random.choice(image_search[:10])
 		image_url = image["image"]
-		print(image_url)
+		
 		first_filename = "cache/" + image_url.split("/")[-1]
 		response = requests.get(image_url, stream=True)
 		with open(first_filename, "wb") as outfile:

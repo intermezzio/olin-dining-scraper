@@ -10,7 +10,7 @@ from send import send_mail, email_recipients, debug_email, email_bot
 
 prefix = ""
 
-postfix = ""
+postfix = "Quotes stated above are, in fact, slanderous, and no, I <b>did not</b> ask anyone for permission before attributing these comments to them."
 
 # def get_meal(day, meal):
 # 	global prefix

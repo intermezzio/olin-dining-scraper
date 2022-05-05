@@ -119,7 +119,7 @@ OSSTP definitely put {adj} {item} in their cubesat. NASA saw it in their design 
 The best 4N loft will be the one that serves {adj} {item} on Friday nights.
 The only thing worse than losing the secret spot is missing out on {adj} {item} in the dining hall.
 I'd work at the dining hall without pay if it gave me unlimited access to the oh, so {adj} {item} for three hours straight!
-Some people would pay $25 to eat RiceBurg while living at Olin, but I tell you, I'd pay {num}*$25 to eat {adj} {item} in the dining hall instead!
+Some people would pay $25 to eat Riceburg while living at Olin, but I tell you, I'd pay {num}*$25 to eat {adj} {item} in the dining hall instead!
 You know that P&M team that's baking food at midnight? Imagine if they served {adj} {item} instead. <i>Everyone</i> would pour into the WH kitchen just to {eat} some. That's a good pivot if I've heard of one!
 I'd gladly register for courses {num} hours late and {eat} {adj} {item} instead.
 Will I get an extension on my {class} project because I <i>had to spend</i> {num} hours eating {adj} {item} from the dining hall?
@@ -132,3 +132,8 @@ You know why people really want singles as R2s? To {eat} as much {adj} {item} as
 I'm about to email the registrar to see if I can change my major to E:{item}.
 I've replaced the experience section on my resume with {item} and all the other {adj} dishes I eat at the dining hall, and now I'm getting like {num} internship offers a day!
 Sam Eldridge should patent the {adj} {item} he cooks here. It would be worth millions!
+I mute all of my group chats and dms, but when I saw this message about the {adj} {item} in the dining hall, I vowed to read every single dining hall email for the rest of my life.
+Now, whenever I hear the name Rebecca, I think of Rebecca's cafe and all of the {adj} {item} I eat in the dining hall.
+I would found a cartel and sell some counterfeit {adj} {item} to make a quick buck. Don't tell Sam though.
+Can PGP get me a job as an {eat} {adj} {item} intern this summer? I would love that job!
+Designing Better Drugs should be replaced with Designing Better {item}. Wait never mind, it's already perfectly designed.
