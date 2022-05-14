@@ -100,7 +100,7 @@ if __name__ == "__main__":
 		print("Debug now")
 	else:
 		print("Set up scheduling")
-		while True:
-			 schedule.run_pending()
-			 print(f"Dormant {datetime.datetime.now()}")
-			 time.sleep(30)
+		# while True:
+		# 	 schedule.run_pending()
+		# 	 print(f"Dormant {datetime.datetime.now()}")
+		# 	 time.sleep(30)
