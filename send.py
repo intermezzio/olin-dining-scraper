@@ -1,6 +1,9 @@
-import yagmail
+# send from yahoo email
 import json
 import os
+from email.message import EmailMessage
+from email.mime.text import MIMEText
+import smtplib
 
 class UrInsecureException(Exception):
 	pass
@@ -21,22 +24,34 @@ try:
 		# bot credentials
 		email_bot = email_addrs[0]
 		password = os.environ.get('PASSWORD', config["password"])
-	yag = yagmail.SMTP(email_bot, password)
+
+	# create smtp client for sending emails
+	smtp_client = smtplib.SMTP('smtp.mail.yahoo.com', 587)
 except Exception:
 	raise UrInsecureException(f"You don't have the proper credentials for this")
 
-def send_mail(recipient=debug_email, bcc=None, subject = "Meal Update", body="test", attachment=[],
-		contents=[]):
-	global yag
+
+def send_mail(recipient=debug_email, subject = "Meal Update", body="test"):
+	global email_bot, password
+	
+	if isinstance(recipient, str):
+		recipient = [recipient]
+
+	email_message = EmailMessage()
+	
+	email_message["From"] = email_bot
+	email_message["To"] = recipient
+	email_message["Subject"] = subject
+	
+	email_message.set_content(body, subtype="html")
+
 	try:
-		yag.send(
-		    to=recipient,
-		    bcc=bcc,
-		    subject=subject,
-		    contents=contents+[body], 
-		    attachments=attachment,
-		)
+		with smtplib.SMTP('smtp.mail.yahoo.com', 587) as smtp_client:
+			smtp_client.ehlo()
+			smtp_client.starttls()
+			smtp_client.ehlo()
+			smtp_client.login(email_bot, password)
+			smtp_client.send_message(email_message)
 	except Exception as e:
 		print(e)
 		raise UrInsecureException(f"You don't have the proper credentials for this")
-

@@ -3,4 +3,3 @@ duckduckgo_search==1.5.1
 icecream==2.1.2
 requests==2.27.1
 schedule==1.1.0
-yagmail==0.15.277

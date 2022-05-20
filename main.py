@@ -4,9 +4,9 @@ import traceback
 import time
 import datetime
 import schedule
-import yagmail
-from message import MessageGenerator
+from message_html import MessageGenerator
 from send import send_mail, email_recipients, debug_email, email_bot
+from dining import DiningInfoManager
 
 prefix = ""
 
@@ -42,10 +42,11 @@ def get_day(day):
 	global prefix
 	try:
 		print(f"Getting {day}")
-		m = MessageGenerator()
-		msg, caption = m.generate_day_message(day, quotes=2)
-		
-		msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
+		d = DiningInfoManager()
+		msg = MessageGenerator.from_dh(d, day)
+		msg.export()
+
+		# msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
 		
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
@@ -53,17 +54,16 @@ def get_day(day):
 		for recipient in email_recipients:
 			send_mail(recipient=recipient,
 				subject=f"{day} at the Dining Hall",
-				body=msg,
-				attachment="menu.json",
-				contents=[yagmail.inline("featured_img.png")]
+				body=str(msg),
 			)
 	except Exception:
 		error_info = traceback.format_exc()
 		print("Exception")
-		send_mail(recipient=debug_email,
-			subject=f"[error] {day} at the Dining Hall",
-			body=error_info
-		)
+		print(error_info)
+		# send_mail(recipient=debug_email,
+		# 	subject=f"[error] {day} at the Dining Hall",
+		# 	body=error_info
+		# )
 
 # EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 		print("Debug now")
 	else:
 		print("Set up scheduling")
-		# while True:
-		# 	 schedule.run_pending()
-		# 	 print(f"Dormant {datetime.datetime.now()}")
-		# 	 time.sleep(30)
+		while True:
+			 schedule.run_pending()
+			 print(f"Dormant {datetime.datetime.now()}")
+			 time.sleep(30)

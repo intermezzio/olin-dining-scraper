@@ -18,7 +18,9 @@ This option is great for hosting on another cloud platform because you can set e
 
 `EMAIL_ADDRS`: a comma separated list of emails for the bot, debug email, and recipients.
 
-The bot is a gmail address set up to send mail from these Python scripts (it must be gmail to use the yagmail package). To set this bot up, sign in to your account and navigate [here](https://www.google.com/settings/security/lesssecureapps) to enable Python to send emails from the address.
+~~The bot is a gmail address set up to send mail from these Python scripts (it must be gmail to use the yagmail package). To set this bot up, sign in to your account and navigate [here](https://www.google.com/settings/security/lesssecureapps) to enable Python to send emails from the address.~~
+
+Due to [gmail disabling third party apps without OAuth](https://support.google.com/accounts/answer/6010255?hl=en), this now works with a Yahoo email. Create a Yahoo email address, go [here](https://login.yahoo.com/myaccount/security), and navigate to the "App Password" section, where you can generate a password for signing in from this code. Use this as a password to enable Python to send emails from the address. Platforms other than Yahoo mail can be used by changing the SMTP URL in the email script if so desired.
 
 The debug email should be the maintainer's personal email address. This is where all emails about errors in the code are sent.
 

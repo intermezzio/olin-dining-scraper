@@ -137,3 +137,16 @@ Now, whenever I hear the name Rebecca, I think of Rebecca's cafe and all of the 
 I would found a cartel and sell some counterfeit {adj} {item} to make a quick buck. Don't tell Sam though.
 Can PGP get me a job as an {eat} {adj} {item} intern this summer? I would love that job!
 Designing Better Drugs should be replaced with Designing Better {item}. Wait never mind, it's already perfectly designed.
+I would drive my {car} to {address} to pick up takeout {adj} {item} if it weren't at the dining hall.
+I would sell my {car} to buy just one serving of {adj} {item}.
+I would give my SSN just to have a taste of {adj} {item}. Here, it's {ssn}!
+If I needed to call the dining hall in advance to get {adj} {item}, I'd memorize the number - (definitely) {phone_number} - and call it every night.
+I would take a light jog to {capital} to pick up some {adj} {item} tomorrow morning. Do you want to join? We'd have to leave {num} hours before normal wakeup time.
+If we all had to legally change my name to {full_name} to {eat} {adj} {item}, I think we'd have a lot of people named {full_name} graduating each year.
+This {adj} {item} goes great with some {beer_brand}!
+If I had to learn {language} to talk to the original creators of {adj} {item}, I would!
+I would change my computer's IP address to {ip_addr} if that's what it took to get more {adj} {item}.
+I would stub my toes {num} times to get more {adj} {item}.
+I can taste the {adj} {ingredient} in this {item}, it's luxurious!
+It's been hard getting my friends to come visit Olin, but when I told them about {adj} {item} in the dining hall, they knew visiting was worth the {num} hour flight from {address}.
+How much {item} could a woodchuck {eat} if a woodchuck could {eat} {item}?

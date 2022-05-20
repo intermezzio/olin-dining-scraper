@@ -5,17 +5,44 @@ import re
 import os
 import subprocess
 from duckduckgo_search import ddg_images
+import urllib.request
+import io
+from icecream import ic
 
 fixer = re.compile(r'<[^>]+>')
 
-def get_image(search_term):
+def get_image(search_term, url_only=False):
 	global fixer
 	search_term = fixer.sub('', search_term)
-	image_search = ddg_images(search_term + " png", safesearch="On", max_results=10)
+	image_search = ddg_images(search_term, safesearch="On", max_results=100)
 	if not image_search:
-		return
-	image = image_search[0] # random.choice(image_search[:10])
-	image_url = image["image"]
+		return "https://lifestyleasia.onemega.com/wp-content/uploads/2018/04/The-Disney-movie-made-the-traditional-French-dish-Ratatouille-world-famous.png"
+
+	random.shuffle(image_search) # randomize output
+	
+	for image in image_search: # random.choice(image_search[:10])
+		image_url = image["image"]
+
+		try:
+			path = urllib.request.urlopen(ic(image_url))
+			meta = path.info()
+			image_size = int(meta.get(name="Content-Length"))
+			if ic(image_size) > 5 * 1e6: # if over 5MB
+				ic("file too big")
+
+				continue
+		except:
+			continue
+
+		if image_url[-4:] == ".png" or url_only:
+			break
+	else:
+		# ratatouille
+		image_url = "https://lifestyleasia.onemega.com/wp-content/uploads/2018/04/The-Disney-movie-made-the-traditional-French-dish-Ratatouille-world-famous.png"
+
+	if url_only:
+		return image_url
+
 	response = requests.get(image_url, stream=True)
 	with open("featured_img.png", "wb") as outfile:
 		shutil.copyfileobj(response.raw, outfile)

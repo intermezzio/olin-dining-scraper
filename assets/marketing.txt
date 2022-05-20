@@ -1,0 +1,6 @@
+Today's shipemnt of food was harvested at {address} and flown in last night for maximum freshness.
+Hand-crafted dishes were made with a proprietary {appliance} for enhanced taste.
+Today's menu includes spices found in remote regions like {address}.
+Today's menu includes spices found in remote regions like http://​{ip_addr}/.
+Rebecca's Café hired some {beer_brand} employees to prepare the finest refreshments along with the meal.
+The delicate features of today's dishes were modeled in SolidWorks by some of the smartest {nationality} in the world.

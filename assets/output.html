@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+<meta charset="utf-8"/>
+<!-- utf-8 works for most cases -->
+<meta content="width=device-width" name="viewport"/>
+<!-- Forcing initial-scale shouldn't be necessary -->
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<!-- Use the latest (edge) version of IE rendering engine -->
+<meta name="x-apple-disable-message-reformatting"/>
+<!-- Disable auto-scale in iOS 10 Mail entirely -->
+<title>
+</title>
+<!-- The title tag shows in email notifications, like Android 4.4. -->
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet"/>
+<!-- CSS Reset : BEGIN -->
+<style>
+      /* What it does: Remove spaces around the email design added by some email clients. */
+      /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+      html,
+      body {
+        margin: 0 auto !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+        background: #f1f1f1;
+      }
+      /* What it does: Stops email clients resizing small text. */
+      * {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      /* What it does: Centers email on Android 4.4 */
+      div[style*="margin: 16px 0"] {
+        margin: 0 !important;
+      }
+      /* What it does: Stops Outlook from adding extra spacing to tables. */
+      table,
+      td {
+        mso-table-lspace: 0pt !important;
+        mso-table-rspace: 0pt !important;
+      }
+      /* What it does: Fixes webkit padding issue. */
+      table {
+        border-spacing: 0 !important;
+        border-collapse: collapse !important;
+        table-layout: fixed !important;
+        margin: 0 auto !important;
+      }
+      /* What it does: Uses a better rendering method when resizing images in IE. */
+      img {
+        -ms-interpolation-mode:bicubic;
+      }
+      /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+      a {
+        text-decoration: none;
+      }
+      /* What it does: A work-around for email clients meddling in triggered links. */
+      *[x-apple-data-detectors],  /* iOS */
+      .unstyle-auto-detected-links *,
+      .aBn {
+        border-bottom: 0 !important;
+        cursor: default !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+      /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+      .a6S {
+        display: none !important;
+        opacity: 0.01 !important;
+      }
+      /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+      .im {
+        color: inherit !important;
+      }
+      /* If the above doesn't work, add a .g-img class to any image in question. */
+      img.g-img + div {
+        display: none !important;
+      }
+      /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+      /* Create one of these media queries for each additional viewport size you'd like to fix */
+      /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+      @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+        u ~ div .email-container {
+          min-width: 320px !important;
+        }
+      }
+      /* iPhone 6, 6S, 7, 8, and X */
+      @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+        u ~ div .email-container {
+          min-width: 375px !important;
+        }
+      }
+      /* iPhone 6+, 7+, and 8+ */
+      @media only screen and (min-device-width: 414px) {
+        u ~ div .email-container {
+          min-width: 414px !important;
+        }
+      }
+    </style>
+<!-- CSS Reset : END -->
+<!-- Progressive Enhancements : BEGIN -->
+<style>
+      .primary{
+        background: #f5564e;
+      }
+      .bg_white{
+        background: #ffffff;
+      }
+      .bg_light{
+        background: #fafafa;
+      }
+      .bg_black{
+        background: #000000;
+      }
+      .bg_dark{
+        background: rgba(0,0,0,.8);
+      }
+      .email-section{
+        padding:2.5em;
+      }
+      /*BUTTON*/
+      .btn{
+        padding: 5px 15px;
+        display: inline-block;
+      }
+      .btn.btn-primary{
+        border-radius: 5px;
+        background: #f5564e;
+        color: #ffffff;
+      }
+      .btn.btn-white{
+        border-radius: 5px;
+        background: #ffffff;
+        color: #000000;
+      }
+      .btn.btn-white-outline{
+        border-radius: 5px;
+        background: transparent;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+      h1,h2,h3,h4,h5,h6{
+        font-family: 'Nunito Sans', sans-serif;
+        color: #000000;
+        margin-top: 0;
+      }
+      body{
+        font-family: 'Nunito Sans', sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 1.8;
+        color: rgba(0,0,0,.4);
+      }
+      a{
+        color: #f5564e;
+      }
+      table{
+      }
+      /*LOGO*/
+      .logo h1{
+        margin: 0;
+      }
+      .logo h1 a{
+        color: #000;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-family: 'Nunito Sans', sans-serif;
+      }
+      .navigation{
+        padding: 0;
+      }
+      .navigation li{
+        list-style: none;
+        display: inline-block;
+        ;
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .navigation li a{
+        color: rgba(0,0,0,.6);
+      }
+      /*HERO*/
+      .hero{
+        position: relative;
+        z-index: 0;
+      }
+      .hero .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: '';
+        width: 100%;
+        background: #000000;
+        z-index: -1;
+        opacity: .3;
+      }
+      .hero .icon{
+      }
+      .hero .icon a{
+        display: block;
+        width: 60px;
+        margin: 0 auto;
+      }
+      .hero .text{
+        color: rgba(255,255,255,.8);
+        padding: 0 4em;
+      }
+      .hero .text h2{
+        color: #ffffff;
+        font-size: 40px;
+        margin-bottom: 0;
+        line-height: 1.2;
+        font-weight: 900;
+      }
+      /*HEADING SECTION*/
+      .heading-section{
+      }
+      .heading-section h2{
+        color: #000000;
+        font-size: 24px;
+        margin-top: 0;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+      .heading-section .subheading{
+        margin-bottom: 20px !important;
+        display: inline-block;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(0,0,0,.4);
+        position: relative;
+      }
+      .heading-section .subheading::after{
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10px;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: #f5564e;
+        margin: 0 auto;
+      }
+      .heading-section-white{
+        color: rgba(255,255,255,.8);
+      }
+      .heading-section-white h2{
+        font-family: 
+          line-height: 1;
+        padding-bottom: 0;
+      }
+      .heading-section-white h2{
+        color: #ffffff;
+      }
+      .heading-section-white .subheading{
+        margin-bottom: 0;
+        display: inline-block;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255,255,255,.4);
+      }
+      .icon{
+        text-align: center;
+      }
+      .icon img{
+      }
+      /*SERVICES*/
+      .services{
+        background: rgba(0,0,0,.03);
+      }
+      .text-services{
+        padding: 10px 10px 0;
+        text-align: center;
+      }
+      .text-services h3{
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .services-list{
+        padding: 0;
+        margin: 0 0 10px 0;
+        width: 100%;
+        float: left;
+      }
+      .services-list .text{
+        width: 100%;
+        float: right;
+      }
+      .services-list h3{
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 18px;
+      }
+      .services-list p{
+        margin: 0;
+      }
+      /*DESTINATION*/
+      .text-tour{
+        padding-top: 10px;
+      }
+      .text-tour h3{
+        margin-bottom: 0;
+      }
+      .text-tour h3 a{
+        color: #000;
+      }
+      /*BLOG*/
+      .text-services .meta{
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+      /*TESTIMONY*/
+      .text-testimony .name{
+        margin: 0;
+      }
+      .text-testimony .position{
+        color: rgba(0,0,0,.3);
+      }
+      /*COUNTER*/
+      .counter{
+        width: 100%;
+        position: relative;
+        z-index: 0;
+      }
+      .counter .overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        content: '';
+        width: 100%;
+        background: #000000;
+        z-index: -1;
+        opacity: .3;
+      }
+      .counter-text{
+        text-align: center;
+      }
+      .counter-text .num{
+        display: block;
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 700;
+      }
+      .counter-text .name{
+        display: block;
+        color: rgba(255,255,255,.9);
+        font-size: 13px;
+      }
+      ul.social{
+        padding: 0;
+      }
+      ul.social li{
+        display: inline-block;
+      }
+      /*FOOTER*/
+      .footer{
+        color: rgba(255,255,255,.5);
+      }
+      .footer .heading{
+        color: #ffffff;
+        font-size: 20px;
+      }
+      .footer ul{
+        margin: 0;
+        padding: 0;
+      }
+      .footer ul li{
+        list-style: none;
+        margin-bottom: 10px;
+      }
+      .footer ul li a{
+        color: rgba(255,255,255,1);
+      }
+      @media screen and (max-width: 500px) {
+        .icon{
+          text-align: left;
+        }
+        .text-services{
+          padding-left: 0;
+          padding-right: 20px;
+          text-align: left;
+        }
+      }
+    </style>
+</head>
+<body style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #222222;" width="100%">
+<center style="width: 100%; background-color: #f1f1f1;">
+<div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+        ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+      </div>
+<div class="email-container" style="max-width: 600px; margin: 0 auto;">
+<!-- BEGIN BODY -->
+<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: auto;" width="100%">
+<tr>
+<td class="bg_white" style="padding: 1em 2.5em;" valign="top">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="logo" style="text-align: left;" width="40%">
+<h1>
+<a href="#">AUTHENTIC DINING
+                      </a>
+</h1>
+</td>
+<td class="logo" style="text-align: right;" width="60%">
+<ul class="navigation">
+<li>
+<a href="#breakfast">Breakfast
+                        </a>
+</li>
+<li>
+<a href="#lunch">Lunch
+                        </a>
+</li>
+<li>
+<a href="#dinner">Dinner
+                        </a>
+</li>
+<li>
+<a href="https://rebeccasculinarygroup.com/olin/menu-items/">Menu
+                        </a>
+</li>
+</ul>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end tr -->
+<tr>
+<td class="hero bg_white" id="background-dinner-entree" style="background-image: url(https://hennessyonthego.mu/wp-content/uploads/2020/05/Nigiri-Salmon.jpg); background-size: cover; height: 400px;" valign="middle">
+<div class="overlay">
+</div>
+<table>
+<tr>
+<td>
+<div class="text" style="text-align: center;">
+<h2 id="main-dinner-entree">New England</h2>
+</div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end tr -->
+<tr>
+<td class="bg_dark email-section" style="text-align:center;">
+<div class="heading-section heading-section-white">
+<h2 id="marketing">Inaccurate depiction of New England</h2>
+<p id="marketing-description">The delicate features of today's dishes were modeled in SolidWorks by some of the smartest Baltic Russians in the world.</p>
+</div>
+</td>
+</tr>
+<!-- end: tr -->
+<tr>
+<td class="bg_white" id="breakfast">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px">
+<h2>Breakfast
+                            </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+</div>
+<table border="0" cellpadding="0" cellspacing="0" id="breakfast-items" role="presentation" width="100%">
+<tr>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Eggs</a>
+</h3>
+<span class="price">jarred</span>
+</div>
+</td>
+</tr><tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Homefries</a>
+</h3>
+<span class="price">protein-rich</span>
+</div>
+</td>
+</tr></table>
+</td>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Tater Tots</a>
+</h3>
+<span class="price">spacy</span>
+</div>
+</td>
+</tr><tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Tofu Scramble</a>
+</h3>
+<span class="price">spicy</span>
+</div>
+</td>
+</tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+</table>
+</td>
+</tr>
+<!-- end:tr -->
+<tr id="breakfast-comments">
+<td class="bg_light email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px;">
+<h2>Culinary Compliments
+                      </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                      </p> -->
+</div>
+<table border="0" cellpadding="10" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/yemjvwlw/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Crane</h3>
+<span class="position">Engineer
+                                </span>
+<p>Don't even THINK about stealing my Tater Tots. It's so first-year-friendly I want to passionately fill the maw with it all!</p>
+</td>
+</tr>
+</table>
+</td>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/zfbdglwn/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Melissa</h3>
+<span class="position">Engineer
+                                </span>
+<p>I would vote across party lines if the opposing presidential candidate promised to feed every citizen monthly farm raised Homefries from the dining hall. That's what I call universal income &lt;i&gt;and&lt;/i&gt; universal healthcare!</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+<tr>
+<td class="bg_white" id="lunch">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px;">
+<h2>Lunch
+                                  </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+</div>
+<table border="0" cellpadding="0" cellspacing="0" id="lunch-items" role="presentation" width="100%">
+<tr>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">BYO Deli Sandwiches</a>
+</h3>
+<span class="price">buoyant</span>
+</div>
+</td>
+</tr><tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">White Broccoli Garlic Pizza</a>
+</h3>
+<span class="price">refried</span>
+</div>
+</td>
+</tr></table>
+</td>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Veggie Burger</a>
+</h3>
+<span class="price">ideologically sound</span>
+</div>
+</td>
+</tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+</table>
+</td>
+</tr>
+<!-- end:tr -->
+<tr id="lunch-comments">
+<td class="bg_light email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px;">
+<h2>Culinary Compliments
+                            </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+</div>
+<table border="0" cellpadding="10" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/ikcidctl/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Leopoldo Sanchez IV</h3>
+<span class="position">Engineer
+                                      </span>
+<p>My charged-to-3V Veggie Burger brings all of the boys to the yard.</p>
+</td>
+</tr>
+</table>
+</td>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/ylbntrbh/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Luke Witten</h3>
+<span class="position">Engineer
+                                      </span>
+<p>I would change my computer's IP address to 45.168.57.223 if that's what it took to get more crisp White Broccoli Garlic Pizza.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+<tr>
+<td class="bg_white" id="dinner">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td class="bg_white email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px;">
+<h2>Dinner
+                                        </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+</div>
+<table border="0" cellpadding="0" cellspacing="0" id="dinner-items" role="presentation" width="100%">
+<tr>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">New England</a>
+</h3>
+<span class="price">recycled</span>
+</div>
+</td>
+</tr><tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Tomato Mozzarella Flatbread</a>
+</h3>
+<span class="price">spacy</span>
+</div>
+</td>
+</tr></table>
+</td>
+<td valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Baked Potato Bar</a>
+</h3>
+<span class="price">catatonic</span>
+</div>
+</td>
+</tr><tr>
+<td style="padding-top: 20px; padding-right: 10px;">
+<!-- <a href="#"><img src="images/destination-1.jpg" alt="" style="width: 100%; max-width: 600px; height: auto; margin: auto; display: block;"></a> -->
+<div class="text-tour" style="text-align: center;">
+<h3>
+<a href="#">Ham</a>
+</h3>
+<span class="price">charming</span>
+</div>
+</td>
+</tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+</table>
+</td>
+</tr>
+<!-- end:tr -->
+<tr id="dinner-comments">
+<td class="bg_light email-section">
+<div class="heading-section" style="text-align: center; padding: 0 30px;">
+<h2>Culinary Compliments
+                                  </h2>
+<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                                  </p> -->
+</div>
+<table border="0" cellpadding="10" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/xfaxirir/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Tolulope</h3>
+<span class="position">Engineer
+                                            </span>
+<p>Man, I used to love my mom's home cooking, but now I can't wait to come to Olin just to eat that oh, so levitating Baked Potato Bar.</p>
+</td>
+</tr>
+</table>
+</td>
+<td style="padding-top: 20px;" valign="top" width="50%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td>
+<img alt="" src="https://api.minimalavatars.com/avatar/ucqqzgxg/png" style="width: 100px; max-width: 600px; height: auto; margin-bottom: 20px; display: block; border-radius: 50%;"/>
+</td>
+</tr>
+<tr>
+<td class="text-testimony" style="">
+<h3 class="name">Emma Fox</h3>
+<span class="position">Engineer
+                                            </span>
+<p>I would patiently wait outside the dining hall for 18 hours to stick my face in a bowl filled with the conductive Tomato Mozzarella Flatbread they're cooking.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+</table>
+</td>
+</tr>
+<!-- end:tr -->
+<!-- 1 Column Text + Button : END -->
+</table>
+<table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="margin: auto;" width="100%">
+<tr>
+<td class="bg_black footer email-section" valign="middle">
+<table>
+<tr>
+<td style="padding-top: 20px;" valign="top" width="60%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td style="text-align: left; padding-right: 10px;">
+<h3 class="heading">About
+                                      </h3>
+<p>A dining hall scraper that can summarize daily menu items
+                                      </p>
+<!-- <ul class="social">
+<li><img src="images/002-play-button.png" alt="" style="width: 30px; max-width: 600px; height: auto; display: block;"></li>
+<li><img src="images/002-play-button.png" alt="" style="width: 30px; max-width: 600px; height: auto; display: block;"></li>
+<li><img src="images/002-play-button.png" alt="" style="width: 30px; max-width: 600px; height: auto; display: block;"></li>
+</ul> -->
+</td>
+</tr>
+</table>
+</td>
+<td style="padding-top: 20px;" valign="top" width="40%">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+<tr>
+<td style="text-align: left; padding-left: 5px; padding-right: 5px;">
+<a href="https://github.com/intermezzio/olin-dining-scraper">
+<h3 class="heading">GitHub
+                                        </h3>
+</a>
+<p>© 2022 Andrew Mascillaro
+                                        <br/> All Rights Reserved
+                                      </p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- end: tr -->
+</table>
+</td></tr></table></td></tr></table></div></center></body>
+</html>
