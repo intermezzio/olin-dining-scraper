@@ -60,10 +60,10 @@ def get_day(day):
 		error_info = traceback.format_exc()
 		print("Exception")
 		print(error_info)
-		# send_mail(recipient=debug_email,
-		# 	subject=f"[error] {day} at the Dining Hall",
-		# 	body=error_info
-		# )
+		send_mail(recipient=debug_email,
+			subject=f"[error] {day} at the Dining Hall",
+			body=error_info
+		)
 
 # EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))

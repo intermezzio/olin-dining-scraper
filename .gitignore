@@ -133,3 +133,6 @@ dmypy.json
 
 # Featured Image
 featured_img.png
+
+# Output Email
+assets/output.html
