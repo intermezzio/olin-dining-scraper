@@ -9,3 +9,8 @@ cd
 funrobo
 data science
 desnat
+isim
+ofyi
+modsim
+scope
+ade
