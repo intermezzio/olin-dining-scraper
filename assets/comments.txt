@@ -153,3 +153,4 @@ It's been hard getting my friends to come visit Olin, but when I told them about
 How much {item} could a woodchuck {eat} if a woodchuck could {eat} {item}?
 If the dining hall had course evals, I'd write {num} pages about how {adj} the {item} is.
 I love the taste of {adj} {item} when paired with a {beer_brand} beverage.
+Rebecca's cafe just bought a new {appliance} to make this {adj} {item}, and I think their investment was worth it.
