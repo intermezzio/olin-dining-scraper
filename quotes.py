@@ -1,5 +1,6 @@
 import random
 import random_stuff as rs
+import re
 
 class Quotes:
 	def __init__(self):
@@ -9,6 +10,7 @@ class Quotes:
 			(r"{beer_brand}", rs.get_beer_brand),
 			(r"{capital}", rs.get_capital),
 			(r"{car}", rs.get_car),
+			(r"{country}", rs.get_country),
 			(r"{credit_card}", rs.get_credit_card),
 			(r"{food}", rs.get_food),
 			(r"{hipster}", rs.get_hipster),
@@ -21,6 +23,7 @@ class Quotes:
 			(r"{phone_number}", rs.get_phone_number),
 			(r"{ssn}", rs.get_ssn),
 		)
+		self.tag_remover = re.compile(r'<[^>]+>')
 		self._load_assets()
 
 	def _load_assets(self):
@@ -59,11 +62,13 @@ class Quotes:
 		bases = self._choose_n(self.marketing, n)
 		return self._from_templates(bases, n=n, quote_only=True)
 
-	def get_quotes(self, item_list, n=1, quote_only=False):
+	def get_quotes(self, item_list, n=1, quote_only=False, html_tags=True):
 		bases = self._choose_n(self.comments, n)
-		return self._from_templates(bases, n=n, item_list=item_list, quote_only=quote_only)
+		return self._from_templates(bases, n=n, item_list=item_list, quote_only=quote_only,
+			html_tags=html_tags)
 
-	def _from_templates(self, bases, item_list=None, n=1, quote_only=False):
+	def _from_templates(self, bases, item_list=None, n=1, quote_only=False,
+			html_tags=True):
 		adjs = self._choose_n(self.adjectives, n)
 		classes = self._choose_n(self.classes, n)
 		eats = self._choose_n(self.eat, n)
@@ -80,6 +85,8 @@ class Quotes:
 			b = b.replace(r"{class}", c)
 			b = b.replace(r"{name}", n)
 			b = self.substitute_random_api(b)
+			if not html_tags:
+				b = self.tag_remover.sub('', b)
 			quotes.append(b)
 
 		return quotes

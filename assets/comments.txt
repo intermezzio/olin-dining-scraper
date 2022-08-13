@@ -154,3 +154,9 @@ How much {item} could a woodchuck {eat} if a woodchuck could {eat} {item}?
 If the dining hall had course evals, I'd write {num} pages about how {adj} the {item} is.
 I love the taste of {adj} {item} when paired with a {beer_brand} beverage.
 Rebecca's cafe just bought a new {appliance} to make this {adj} {item}, and I think their investment was worth it.
+You have been redirected to this page because you attempted to navigate using your browser's Back or Refresh button. To avoid this in the future, make sure you close your course browser, go to the dining hall, and {eat} {adj} {item}.
+I would drive my {car} {num}00 miles to get some more {adj} {item} from the dining hall.
+If Rebecca's cafe opens a new location in {capital}, I'm moving there when I graduate!
+If I could only order {adj} {item} in {language}, I'd learn to speak that language fluently.
+I can taste the rich {ingredient} in this {adj} {item}!
+Hey! Stop taking my food! That's my {adj} {item}!
