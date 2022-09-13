@@ -101,6 +101,6 @@ if __name__ == "__main__":
 	else:
 		print("Set up scheduling")
 		while True:
-			 # schedule.run_pending()
+			 schedule.run_pending()
 			 print(f"Real Dormant {datetime.datetime.now()}")
 			 time.sleep(30)
