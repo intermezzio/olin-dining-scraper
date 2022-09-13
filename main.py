@@ -67,7 +67,7 @@ def get_day(day):
 
 # EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
-schedule.every().tuesday.at("14:42").do(lambda: get_day("Tuesday"))
+schedule.every().tuesday.at("10:42").do(lambda: get_day("Tuesday"))
 schedule.every().wednesday.at("10:42").do(lambda: get_day("Wednesday"))
 schedule.every().thursday.at("10:42").do(lambda: get_day("Thursday"))
 schedule.every().friday.at("10:42").do(lambda: get_day("Friday"))
