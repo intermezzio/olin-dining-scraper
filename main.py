@@ -18,7 +18,7 @@ postfix = "Quotes stated above are, in fact, slanderous, and no, I <b>did not</b
 # 		print(f"Getting {day} {meal}")
 # 		m = MessageGenerator()
 # 		msg = m.generate_message(day, meal, quotes=2)
-		
+
 # 		msg = prefix + ("\n\n" if prefix else "") + msg + ("\n\n" if postfix else "") + postfix
 
 # 		print(f"{len(email_recipients)} email addresses")
@@ -47,10 +47,10 @@ def get_day(day):
 		msg.export()
 
 		# msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
-		
+
 		print(f"{len(email_recipients)} email addresses")
 		print(email_recipients)
-		
+
 		for recipient in email_recipients:
 			send_mail(recipient=recipient,
 				subject=f"{day} at the Dining Hall",
@@ -67,7 +67,7 @@ def get_day(day):
 
 # EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
-schedule.every().tuesday.at("10:42").do(lambda: get_day("Tuesday"))
+schedule.every().tuesday.at("15:42").do(lambda: get_day("Tuesday"))
 schedule.every().wednesday.at("10:42").do(lambda: get_day("Wednesday"))
 schedule.every().thursday.at("10:42").do(lambda: get_day("Thursday"))
 schedule.every().friday.at("10:42").do(lambda: get_day("Friday"))
