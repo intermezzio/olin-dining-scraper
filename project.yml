@@ -1,0 +1,5 @@
+packages:
+  - name: scraper
+    actions:
+      - name: src
+        runtime: 'python:default'
