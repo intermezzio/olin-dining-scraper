@@ -235,3 +235,5 @@ masculine
 feminine
 gender nonconforming
 Valorant-repelling
+OSHA compliant
+HIPAA compliant
