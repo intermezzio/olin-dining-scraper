@@ -163,3 +163,4 @@ Hey! Stop taking my food! That's my {adj} {item}!
 Some claim insects hop because of their strength or their agility, but I'm convinced it's the {adj} {item} that does the trick.
 Quantitative Engineering Analysis more like Quantitative {item} Analysis am I right?
 Why model a bikeshare in modsim when you can model a {adj} {item} share? It would be used by the masses!
+This is hilarious.
