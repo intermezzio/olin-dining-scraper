@@ -239,3 +239,6 @@ OSHA compliant
 HIPAA compliant
 toleranced-to-{num}-thou
 compassionate
+hotswappable
+magical
+100% test coverage

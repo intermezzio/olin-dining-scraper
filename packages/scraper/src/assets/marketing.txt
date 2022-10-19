@@ -1,5 +1,8 @@
-The dining hall staff flew in from {address} to come and tell YOU to join the SERV meal packing event.
-Employees at Rebecca's Café remember to make love the first ingredient in these dishes, just like you will at the SERV meal packing event.
+Today's shipemnt of food was harvested at {address} and flown in last night for maximum freshness.
+Hand-crafted dishes were made with a proprietary {appliance} for enhanced taste.
+Today's menu includes spices found in remote regions like {address}.
+Today's menu includes spices found in remote regions like http://​{ip_addr}/.
+Rebecca's Café hired some {beer_brand} employees to prepare the finest refreshments along with the meal.
+The delicate features of today's dishes were modeled in SolidWorks by some of the smartest {nationality} in the world.
+Love is the first ingredient in all of these dishes, followed by {ingredient} as a close second.
 Rich features of today's dishes were toleranced to {num} thou by some of the most talented {nationality} in {country}.
-Chefs were so moved by your decision to participate in the SERV meal packing event that they added high-quality {ingredient} to today's meals.
-It would be so ~~{hipster}~~ of you if you decided to attend the SERV meal packing event after eating fine dining from Rebecca's Café.
