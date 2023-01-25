@@ -242,3 +242,7 @@ compassionate
 hotswappable
 magical
 100% test coverage
+tax-exempt
+chocolatey
+bizarre
+zero-indexed

@@ -38,32 +38,36 @@ postfix = "Quotes stated above are, in fact, slanderous, and no, I <b>did not</b
 # 			body=e
 # 		)
 
+
 def get_day(day):
-	global prefix
-	try:
-		print(f"Getting {day}")
-		d = DiningInfoManager()
-		msg = MessageGenerator.from_dh(d, day)
-		msg.export()
+    global prefix
+    try:
+        print(f"Getting {day}")
+        d = DiningInfoManager()
+        msg = MessageGenerator.from_dh(d, day)
+        msg.export()
 
-		# msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
+        # msg = caption + "\n\n" + prefix + ("\n\n" if prefix else "") + msg + ("\n" if postfix else "") + postfix
 
-		print(f"{len(email_recipients)} email addresses")
-		print(email_recipients)
+        print(f"{len(email_recipients)} email addresses")
+        print(email_recipients)
 
-		for recipient in email_recipients:
-			send_mail(recipient=recipient,
-				subject=f"{day} at the Dining Hall",
-				body=str(msg),
-			)
-	except Exception:
-		error_info = traceback.format_exc()
-		print("Exception")
-		print(error_info)
-		send_mail(recipient=debug_email,
-			subject=f"[error] {day} at the Dining Hall",
-			body=error_info
-		)
+        for recipient in email_recipients:
+            send_mail(
+                recipient=recipient,
+                subject=f"{day} at the Dining Hall",
+                body=str(msg),
+            )
+    except Exception:
+        error_info = traceback.format_exc()
+        print("Exception")
+        print(error_info)
+        send_mail(
+            recipient=debug_email,
+            subject=f"[error] {day} at the Dining Hall",
+            body=error_info,
+        )
+
 
 # EDT = UTC-4, these times are 4 hours ahead
 schedule.every().monday.at("10:42").do(lambda: get_day("Monday"))
@@ -96,11 +100,14 @@ schedule.every().sunday.at("10:42").do(lambda: get_day("Sunday"))
 # schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
 
 if __name__ == "__main__":
-	if len(sys.argv) >= 2 and sys.argv[1] == "debug":
-		print("Debug now")
-	else:
-		print("Set up scheduling")
-		while True:
-			 schedule.run_pending()
-			 print(f"Real Dormant {datetime.datetime.now()}")
-			 time.sleep(30)
+    if len(sys.argv) >= 2 and sys.argv[1] == "debug":
+        print("Debug now")
+    elif len(sys.argv) >= 2 and sys.argv[1] == "once":
+        dotw = datetime.datetime.today().strftime('%A')
+        get_day(dotw)
+    else:
+        print("Set up scheduling")
+        while True:
+            schedule.run_pending()
+            print(f"Real Dormant {datetime.datetime.now()}")
+            time.sleep(30)
