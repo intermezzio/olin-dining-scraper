@@ -246,3 +246,10 @@ tax-exempt
 chocolatey
 bizarre
 zero-indexed
+frothy
+FCC approved
+PG-13
+CISSP certified
+green shop trained
+Texan
+Jersey fresh
