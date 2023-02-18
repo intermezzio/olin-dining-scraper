@@ -1,3 +1,3 @@
-worker: cd packages/scraper/src && python __main__.py
-web: cd packages/scraper/src && python __main__.py
+worker: python __main__.py
+web: python __main__.py
 
