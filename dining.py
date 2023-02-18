@@ -1,8 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import re
 import string
 from icecream import ic
+import unicodedata
+from tree import Tree
+from functools import reduce
+from operator import add
 
 URL = "https://rebeccasculinarygroup.com/olin/menu-items/"
 
@@ -21,47 +26,35 @@ weekends = all_days[5:]
 
 class DiningInfoManager:
     def __init__(self):
-        self._get_details()
-        self.parse_menu()
-
-    def _get_details(self):
-        self.webpage = requests.get(URL)
-        self.soup = BeautifulSoup(self.webpage.content, "lxml")
-        self.all_details = self.soup.find_all(class_="tabDetails")
-
-    def parse_menu(self):
-        self._get_breakfasts()
-        self._get_lunch_specials()
-        self._get_entrees()
-        self._get_grill()
-        self._get_pizza()
+        self._fetch_site_data()
 
         self.menu = {
             day: {meal: {} for meal in ("Breakfast", "Lunch", "Dinner")}
             for day in weekdays
-        } | {day: {meal: {} for meal in ("Dinner",)} for day in weekends}
+        } | {day: {meal: {} for meal in ("Lunch", "Dinner")} for day in weekends}
 
-        for day in weekdays:
-            self.menu[day]["Breakfast"] = self.breakfast_dict[day]
+    def _fetch_site_data(self):
+        self.webpage = requests.get(URL)
+        self.soup = BeautifulSoup(self.webpage.content, "lxml")
+        # with open("assets/site.html", "r") as infile:
+        #     self.soup = BeautifulSoup(infile.read(), "lxml")
+        self.all_details = self.soup.find_all(class_="tabDetails")
+        
+        self.all_text: list[list[str]] = []
 
-            self.menu[day]["Lunch"] = {
-                "Sandwiches": self.lunch_specials_dict[day],
-                "Entree": self.lunch_entree_dict[day],
-                "Grill": self.lunch_grill_dict[day],
-                "Pizza": self.pizza_dict[day],
-            }
-
-            self.menu[day]["Dinner"] = {
-                "Entree": self.dinner_entree_dict[day],
-                "Grill": self.dinner_grill_dict[day],
-                # "Pizza": self.pizza_dict[day],
-            }
-
-        for day in weekends:
-            self.menu[day]["Dinner"] = {
-                "Entree": self.dinner_entree_dict[day],
-                "Grill": self.dinner_grill_dict[day],
-            }
+        for panel in self.all_details:
+            text = panel.get_text()
+            text = unicodedata.normalize("NFKD", text)
+            text = re.sub(r"\*\*\*", "", text)
+            text = re.sub(r"Â", "", text)
+            text = re.sub(r"\s*\n\s*", "\n", text)
+            self.all_text.append(text.strip().split("\n"))
+        
+    def parse_menu(self):
+        self._get_breakfasts()
+        self._get_entrees()
+        self._get_grill()
+        self._get_pizza()
 
         with open("menu.json", "w") as outfile:
             json.dump(self.menu, outfile, indent=4)
@@ -72,66 +65,121 @@ class DiningInfoManager:
         output_str = "".join(filter(lambda x: x in printable, input_str)).strip()
         return output_str
 
-    def _get_breakfasts(self):
-        breakfast_info = self.all_details[0]
-        self.breakfast_dict = self._get_section(breakfast_info, weekdays, "Breakfast")
-        return self.breakfast_dict
+    def get_items(self, day: str, meal: str) -> list[str]:
+        base = self.menu[day][meal]
+        return DiningInfoManager.extract(base)
+    
+    @staticmethod
+    def extract(base) -> list[str]:
+        if isinstance(base, list):
+            return base
+        elif isinstance(base, str):
+            return [base]
+        elif isinstance(base, dict):
+            return reduce(add, (DiningInfoManager.extract(x) for _, x in base.items()))
+        else:
+            return []
 
-    def _get_lunch_specials(self):
-        lunch_specials_info = self.all_details[2]
-        at_specials_section = False
-        current_days_in_header = set()
-        self.lunch_specials_dict = {day: "" for day in all_days}
+    def _get_breakfasts(self) -> None:
+        breakfast_info = self.all_text[0]
 
-        for node in lunch_specials_info.find_all(recursive=False):
-            if not at_specials_section:
-                if "Lunch Specials" in node.text:
-                    at_specials_section = True
-                else:
-                    continue
-            potential_days_in_header = set()
-            for day in all_days:
-                if day in node.text:
-                    potential_days_in_header.add(day)
-
-            if potential_days_in_header:
-                current_days_in_header = potential_days_in_header
-                continue
-
-            for day in current_days_in_header:
-                self.lunch_specials_dict[day] += self._clean_str(node.text)
-
-        for day in current_days_in_header:
-            self.lunch_specials_dict[day] = self.lunch_specials_dict[day].strip()
-
-        return self.lunch_specials_dict
+        def breakfast_hier(line: str) -> int:
+            if line == "Breakfast":
+                return -1
+            elif line in all_days:
+                return 1
+            elif line == "Egg of the Day":
+                return -1
+            else:
+                return 2
+        
+        self.breakfast_tree = Tree.from_list(breakfast_info, breakfast_hier)
+        breakfast_dict = self.breakfast_tree.to_dict()
+        for day, items in breakfast_dict["root"].items():  # type: ignore
+            self.menu[day]["Breakfast"] = items  # type: ignore
 
     def _get_entrees(self):
-        entrees_info = self.all_details[3]
-        self.lunch_entree_dict = self._get_section(
-            entrees_info, weekdays, "Lunch", "Saturday"
-        )
-        self.dinner_entree_dict = self._get_section(entrees_info, all_days, "Dinner")
-        for k, v in self.dinner_entree_dict.items():
-            if v == "":
-                self.dinner_entree_dict[
-                    k
-                ] = 'NaM (Not a Meal)'
+        entrees_info = self.all_text[3]
 
-        return (self.lunch_entree_dict, self.dinner_entree_dict)
+        def entrees_hier(line: str) -> int:
+            if line == "Entree":
+                return -1
+            elif line in all_days:
+                return 1
+            elif line.lower() in ("lunch", "brunch", "dinner"):
+                return 2
+            elif line[0] == "(" and line[-1] == ")":
+                return -1
+            else:
+                return 3
+        
+        entrees_tree = Tree.from_list(entrees_info, entrees_hier)
+        entrees_dict = ic(entrees_tree.to_dict()["root"])  # type: ignore
+
+        for day in entrees_dict.keys():  # type: ignore
+            for meal, entrees in entrees_dict[day].items():
+                if meal == "BRUNCH":
+                    meal = "LUNCH"
+                
+                meal = meal[0] + meal[1:].lower()
+                
+                self.menu[day][meal]["Entree"] = entrees[0]
 
     def _get_grill(self):
-        grill_info = self.all_details[4]
-        self.lunch_grill_dict = self._get_section(
-            grill_info, weekdays, "Lunch", "Dinner"
-        )
-        self.dinner_grill_dict = self._get_section(grill_info, all_days, "Dinner")
-        return (self.lunch_grill_dict, self.dinner_grill_dict)
+        grill_info = self.all_text[4]
+        
+        def grill_hier(line: str) -> int:
+            ic(line)
+            if line in ("Grill", "Lunch Grill Items"):
+                return -1
+            elif line in ("Daily Special", "Simply Cooked", "Bistro Plate"):
+                return -1
+            elif line in all_days:
+                return 1
+            elif line.lower() in ("lunch", "brunch", "dinner"):
+                return 2
+            else:
+                return 3
+        
+        grill_tree = Tree.from_list(grill_info, grill_hier)
+        grill_dict = grill_tree.to_dict()["root"]  # type: ignore
 
+        for day in grill_dict.keys():  # type: ignore
+            for meal, grill in grill_dict[day].items():
+                if meal == "BRUNCH":
+                    meal = "LUNCH"
+                
+                meal = meal[0] + meal[1:].lower()
+                
+                self.menu[day][meal]["Grill"] = grill
+        
     def _get_pizza(self):
-        pizza_info = self.all_details[5]
-        self.pizza_dict = self._get_section(pizza_info, weekdays, "Available")
-        return self.pizza_dict
+        pizza_info = self.all_text[5]
+        
+        def pizza_hier(line: str) -> int:
+            if line in ("Pizzas & Pasta", "Available Daily"):
+                return -1
+            elif line in all_days:
+                return 1
+            elif line.lower() in ("lunch", "brunch", "dinner"):
+                return 2
+            elif "Bar" in line:
+                return -1
+            else:
+                return 3
+
+        pizza_tree = Tree.from_list(pizza_info, pizza_hier)
+        pizza_dict = pizza_tree.to_dict()["root"]  # type: ignore
+
+        for day in pizza_dict.keys():  # type: ignore
+            for meal, pizza in pizza_dict[day].items():
+                if meal == "BRUNCH":
+                    meal = "LUNCH"
+                
+                meal = meal[0] + meal[1:].lower()
+                
+                self.menu[day][meal]["Pizza"] = pizza
+            
 
     def _get_section(self, subsoup, dotw, start_str=None, end_str=None):
         has_started = start_str is None

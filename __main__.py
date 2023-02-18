@@ -44,6 +44,7 @@ def get_day(day):
     try:
         print(f"Getting {day}")
         d = DiningInfoManager()
+        d.parse_menu()
         msg = MessageGenerator.from_dh(d, day)
         msg.export()
 

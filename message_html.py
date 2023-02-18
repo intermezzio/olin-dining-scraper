@@ -49,9 +49,9 @@ class MessageGenerator:
             mg._set_meal_comments(items, meal)
         
         if day in weekends:
-            # delete breakfast and lunch
+            # delete breakfast
             mg.template.find(id="breakfast").extract()
-            mg.template.find(id="lunch").extract()
+            # mg.template.find(id="lunch").extract()
 
         return mg
 
@@ -77,26 +77,12 @@ class MessageGenerator:
         """
         ic(manager.menu)
         if day in weekdays:
-            breakfast_items = list(
-                filter(
-                    lambda x: "of the Day" not in x,
-                    manager.menu[day]["Breakfast"].split("\n"),
-                )
-            )
-
-            lunch_items = list()
-            lunch_dict = manager.menu[day]["Lunch"]
-            for key in ("Sandwiches", "Entree", "Grill", "Pizza"):
-                lunch_items += lunch_dict.pop(key, "").split("\n")
+            breakfast_items = manager.get_items(day, "Breakfast")
         else:
             breakfast_items = list()
-            lunch_items = list()
-
         
-        dinner_items = list()
-        dinner_dict = manager.menu[day]["Dinner"]
-        for key in ("Entree", "Grill", "Pizza"):
-            dinner_items += dinner_dict.pop(key, "").split("\n")
+        lunch_items = manager.get_items(day, "Lunch")
+        dinner_items = manager.get_items(day, "Dinner")
 
         template_dict = {
             "breakfast": breakfast_items,
