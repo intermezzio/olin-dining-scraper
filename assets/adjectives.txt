@@ -271,3 +271,6 @@ bank-breaking
 euro-centric
 interest rate-lowering
 20 credited
+unchewed
+boneless
+thought provoking
