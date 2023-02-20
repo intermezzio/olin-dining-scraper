@@ -268,3 +268,6 @@ compounded continuously
 critically damped
 zero indexed
 bank-breaking
+euro-centric
+interest rate-lowering
+20 credited
