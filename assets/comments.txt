@@ -166,3 +166,4 @@ Why model a bikeshare in modsim when you can model a {adj} {item} share? It woul
 This is hilarious.
 I just bought this {adj} {item} off the black market for ${num}00 dollars. It was a steal!
 4 out of 5 {nationality} recommend this {adj} {item} from the dining hall today.
+Some first-years are 20 crediting with softdes. I'm 20 crediting with {adj} {item}.
