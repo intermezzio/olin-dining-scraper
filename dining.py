@@ -101,10 +101,13 @@ class DiningInfoManager:
     def _get_entrees(self):
         entrees_info = self.all_text[3]
 
+        for i, line in enumerate(entrees_info):
+            entrees_info[i] = line.replace(" (DR Independence Day)", "")
+
         def entrees_hier(line: str) -> int:
             if line == "Entree":
                 return -1
-            elif line in all_days:
+            elif line.split()[0] in all_days:
                 return 1
             elif line.lower() in ("lunch", "brunch", "dinner"):
                 return 2
