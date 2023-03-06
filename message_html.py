@@ -160,7 +160,9 @@ class MessageGenerator:
         ):
             img_node["src"] = rs.get_avatar()[0]
             name_node.string.replace_with(self.quotes.get_name()[0])
-            comment_node.string.replace_with(comment)
+            comment_node.clear()
+            comment_node.append(BeautifulSoup(comment, 'lxml'))
+            # comment_node.string.replace_with(comment)
 
     def _change_bg_image(self, node, url):
         node["style"] = node["style"].replace("/*image*/", url)

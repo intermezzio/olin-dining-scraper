@@ -283,3 +283,20 @@ flammable
 inflammable
 pre-owned
 upcycled
+perforated
+hot glued
+socioeconomically advantageous
+ionically bonded
+tactile
+edgy
+traditional
+countercultural
+self-aware
+deeply emotional
+vectorized
+pythonic
+matlab-unfriendly
+bright
+high contrast
+quirky
+
