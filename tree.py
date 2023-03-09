@@ -16,19 +16,20 @@ all_days = (
 
 all_days_lower = tuple(x.lower() for x in all_days)
 
+
 class Tree:
-    def __init__(self, data: str, parent = None, hier: int = 0):
+    def __init__(self, data: str, parent=None, hier: int = 0):
         self.data = data
         self.children: list[Tree] = []
         self.parent: Tree | None = parent
         self.hier = hier
-    
+
     def __repr__(self) -> str:
         self_str = "--" * self.hier + " " + self.data
         child_str = "".join(repr(c) for c in self.children)
         return self_str + "\n" + child_str
 
-    def reveal(self) -> tuple[str,list["Tree"]]:
+    def reveal(self) -> tuple[str, list["Tree"]]:
         return self.data, self.children
 
     def to_dict(self) -> dict | str:
@@ -37,8 +38,10 @@ class Tree:
         else:
             child_data = [x.to_dict() for x in self.children]
             child_data_str = list(filter(lambda x: isinstance(x, str), child_data))
-            child_data_dict = reduce(or_, filter(lambda x: isinstance(x, dict), child_data), dict())
-            
+            child_data_dict = reduce(
+                or_, filter(lambda x: isinstance(x, dict), child_data), dict()
+            )
+
             if child_data_dict and not child_data_str:
                 return {self.data: child_data_dict}
             elif not child_data_dict and child_data_str:
@@ -50,7 +53,7 @@ class Tree:
         return json.dumps(self.to_dict(), indent=2)
 
     @staticmethod
-    def from_list(data: list[str], hier: Callable[[str],int]) -> "Tree":
+    def from_list(data: list[str], hier: Callable[[str], int]) -> "Tree":
         base_tree = Tree("root")
         current_tree = base_tree
         for line in data:
@@ -75,16 +78,22 @@ class Tree:
 
                     if line_hier == current_tree.hier:
                         # current line is sibling of previous
-                        new_tree = Tree(line, parent=current_tree.parent, hier=line_hier)
+                        new_tree = Tree(
+                            line, parent=current_tree.parent, hier=line_hier
+                        )
                         current_tree.parent.children.append(new_tree)
                         current_tree = new_tree
                         break
             else:
-                raise ValueError(f"Invalid hier {line}:{line_hier} after hier {current_tree.data}:{current_tree.hier}.")
+                raise ValueError(
+                    f"Invalid hier {line}:{line_hier} after hier {current_tree.data}:{current_tree.hier}."
+                )
 
         return base_tree
 
+
 if __name__ == "__main__":
+
     def hier_func(line: str) -> int:
         if line.lower() in all_days_lower:
             return 1

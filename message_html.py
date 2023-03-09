@@ -32,7 +32,7 @@ class MessageGenerator:
         send_mail(debug_email, subject="NOT Dining Hall Food", body=str(self.template))
 
     @classmethod
-    def from_template(cls, menu_dict, day = "Monday"):
+    def from_template(cls, menu_dict, day="Monday"):
         """
         {"breakfast": [items], "lunch": [items], "dinner": [items]}
         """
@@ -47,7 +47,7 @@ class MessageGenerator:
             # mg._create_meal(meal)
             mg._set_meal(items, meal)
             mg._set_meal_comments(items, meal)
-        
+
         if day in weekends:
             # delete breakfast
             mg.template.find(id="breakfast").extract()
@@ -58,17 +58,16 @@ class MessageGenerator:
     def _create_meal(self, meal):
         if meal == "dinner":
             return
-        
+
         dinner_section = self.template.find(id="dinner").copy()
         meal_section = dinner_section.copy()
         meal_comments_section = self.template.find(id="dinner-comments").copy()
 
-        meal_section['id'] = meal
-        meal_comments_section['id'] = f"{meal}-comments"
+        meal_section["id"] = meal
+        meal_comments_section["id"] = f"{meal}-comments"
 
         dinner_section.insert_before(meal_comments_section)
         meal_comments_section.insert_before(meal_section)
-		
 
     @classmethod
     def from_dh(cls, manager, day):
@@ -80,7 +79,7 @@ class MessageGenerator:
             breakfast_items = manager.get_items(day, "Breakfast")
         else:
             breakfast_items = list()
-        
+
         lunch_items = manager.get_items(day, "Lunch")
         dinner_items = manager.get_items(day, "Dinner")
 
@@ -153,15 +152,15 @@ class MessageGenerator:
 
         for comment, name, img_node, name_node, comment_node in zip(
             meal_comments,
-            self.quotes.get_name(n=2),
+            rs.get_name(n=2),
             parent_node.find_all("img"),
             parent_node.find_all(class_="name"),
             parent_node.select(".text-testimony > p"),
         ):
             img_node["src"] = rs.get_avatar()[0]
-            name_node.string.replace_with(self.quotes.get_name()[0])
+            name_node.string.replace_with(name)
             comment_node.clear()
-            comment_node.append(BeautifulSoup(comment, 'lxml'))
+            comment_node.append(BeautifulSoup(comment, "lxml"))
             # comment_node.string.replace_with(comment)
 
     def _change_bg_image(self, node, url):

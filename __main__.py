@@ -38,6 +38,7 @@ postfix = "Quotes stated above are, in fact, slanderous, and no, I <b>did not</b
 # 			body=e
 # 		)
 
+
 def get_day_no_email(day):
     print(f"Getting {day}")
     d = DiningInfoManager()
@@ -111,10 +112,10 @@ if __name__ == "__main__":
     if len(sys.argv) >= 2 and sys.argv[1] == "debug":
         print("Debug now")
     elif len(sys.argv) >= 2 and sys.argv[1] == "once":
-        dotw = datetime.datetime.today().strftime('%A')
+        dotw = datetime.datetime.today().strftime("%A")
         get_day(dotw)
     elif len(sys.argv) >= 2 and sys.argv[1] == "local":
-        dotw = datetime.datetime.today().strftime('%A')
+        dotw = datetime.datetime.today().strftime("%A")
         get_day_no_email(dotw)
     else:
         print("Set up scheduling")

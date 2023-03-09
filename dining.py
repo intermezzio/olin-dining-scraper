@@ -39,17 +39,18 @@ class DiningInfoManager:
         # with open("assets/site.html", "r") as infile:
         #     self.soup = BeautifulSoup(infile.read(), "lxml")
         self.all_details = self.soup.find_all(class_="tabDetails")
-        
+
         self.all_text: list[list[str]] = []
 
         for panel in self.all_details:
             text = panel.get_text()
             text = unicodedata.normalize("NFKD", text)
-            text = re.sub(r"\*\*\*", "", text)
-            text = re.sub(r"Â", "", text)
+            text = re.sub(r"\*\*\*", "", text) # *** announcements
+            text = re.sub(r"Â", "", text) # weird characters
+            text = re.sub(r'\([^)]*\)', '', text) # parentheses
             text = re.sub(r"\s*\n\s*", "\n", text)
             self.all_text.append(text.strip().split("\n"))
-        
+
     def parse_menu(self):
         self._get_breakfasts()
         self._get_entrees()
@@ -68,7 +69,7 @@ class DiningInfoManager:
     def get_items(self, day: str, meal: str) -> list[str]:
         base = self.menu[day][meal]
         return DiningInfoManager.extract(base)
-    
+
     @staticmethod
     def extract(base) -> list[str]:
         if isinstance(base, list):
@@ -92,7 +93,7 @@ class DiningInfoManager:
                 return -1
             else:
                 return 2
-        
+
         self.breakfast_tree = Tree.from_list(breakfast_info, breakfast_hier)
         breakfast_dict = self.breakfast_tree.to_dict()
         for day, items in breakfast_dict["root"].items():  # type: ignore
@@ -115,7 +116,7 @@ class DiningInfoManager:
                 return -1
             else:
                 return 3
-        
+
         entrees_tree = Tree.from_list(entrees_info, entrees_hier)
         entrees_dict = ic(entrees_tree.to_dict()["root"])  # type: ignore
 
@@ -123,14 +124,14 @@ class DiningInfoManager:
             for meal, entrees in entrees_dict[day].items():
                 if meal == "BRUNCH":
                     meal = "LUNCH"
-                
+
                 meal = meal[0] + meal[1:].lower()
-                
+
                 self.menu[day][meal]["Entree"] = entrees[0]
 
     def _get_grill(self):
         grill_info = self.all_text[4]
-        
+
         def grill_hier(line: str) -> int:
             ic(line)
             if line in ("Grill", "Lunch Grill Items"):
@@ -143,7 +144,7 @@ class DiningInfoManager:
                 return 2
             else:
                 return 3
-        
+
         grill_tree = Tree.from_list(grill_info, grill_hier)
         grill_dict = grill_tree.to_dict()["root"]  # type: ignore
 
@@ -151,14 +152,14 @@ class DiningInfoManager:
             for meal, grill in grill_dict[day].items():
                 if meal == "BRUNCH":
                     meal = "LUNCH"
-                
+
                 meal = meal[0] + meal[1:].lower()
-                
+
                 self.menu[day][meal]["Grill"] = grill
-        
+
     def _get_pizza(self):
         pizza_info = self.all_text[5]
-        
+
         def pizza_hier(line: str) -> int:
             if line in ("Pizzas & Pasta", "Available Daily"):
                 return -1
@@ -178,11 +179,10 @@ class DiningInfoManager:
             for meal, pizza in pizza_dict[day].items():
                 if meal == "BRUNCH":
                     meal = "LUNCH"
-                
+
                 meal = meal[0] + meal[1:].lower()
-                
+
                 self.menu[day][meal]["Pizza"] = pizza
-            
 
     def _get_section(self, subsoup, dotw, start_str=None, end_str=None):
         has_started = start_str is None
@@ -203,9 +203,7 @@ class DiningInfoManager:
                 dotw_index += 1
                 day = dotw[dotw_index] if dotw_index < len(dotw) else "Monday"
             elif dotw_index >= 1:
-                self.section_dict[dotw[dotw_index - 1]] += (
-                    self._clean_str(node.text)
-                )
+                self.section_dict[dotw[dotw_index - 1]] += self._clean_str(node.text)
             node = node.find_next()
 
         for day in dotw:

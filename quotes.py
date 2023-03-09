@@ -80,7 +80,7 @@ class Quotes:
         quotes = list()
         for b, a, c, e, n, i in zip(bases, adjs, classes, eats, names, items):
             if not quote_only:
-                b = '"' + b + '"\n\t- ' + r"{name}"  # add double quotes and name
+                b = '"' + b + '"\n\t- ' + r"{full_name}"  # add double quotes and name
             b = b.replace(r"{item}", i)
             b = b.replace(r"{adj}", a)
             b = b.replace(r"{eat}", e)
