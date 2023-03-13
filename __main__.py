@@ -109,12 +109,16 @@ schedule.every().sunday.at("10:42").do(lambda: get_day("Sunday"))
 # schedule.every().sunday.at("20:44").do(lambda: get_meal("Sunday", "Dinner"))
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2 and sys.argv[1] == "debug":
+    if datetime.datetime.today() < datetime.datetime.fromisoformat("2023-03-19"):
+        print("Spring break! No menu")
+    elif len(sys.argv) >= 2 and sys.argv[1] == "debug":
         print("Debug now")
     elif len(sys.argv) >= 2 and sys.argv[1] == "once":
+        print("once")
         dotw = datetime.datetime.today().strftime("%A")
         get_day(dotw)
     elif len(sys.argv) >= 2 and sys.argv[1] == "local":
+        print("local")
         dotw = datetime.datetime.today().strftime("%A")
         get_day_no_email(dotw)
     else:
