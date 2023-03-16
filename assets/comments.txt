@@ -168,4 +168,4 @@ I just bought this {adj} {item} off the black market for ${num}00 dollars. It wa
 4 out of 5 {nationality} recommend this {adj} {item} from the dining hall today.
 Some first-years are 20 crediting with softdes. I'm 20 crediting with {adj} {item}.
 This {item} is kinda quirkyyy, it's not like those restaurant {item}.
-
+This {item} is under 24 hour video surveillance.
