@@ -302,3 +302,6 @@ quirky
 🤌
 transient
 single-use
+refurbished
+hand-me-down
+spoon-fed
