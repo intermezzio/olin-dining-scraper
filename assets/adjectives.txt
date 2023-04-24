@@ -307,3 +307,4 @@ hand-me-down
 spoon-fed
 enlarged to show texture
 $$$$
+colorblind friendly
